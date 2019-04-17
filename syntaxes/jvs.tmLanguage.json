@@ -1,0 +1,1622 @@
+{
+	"information_for_contributors": [
+		"This file has been converted from https://github.com/atom/language-java/blob/master/grammars/java.cson",
+		"If you want to provide a fix or improvement, please create a pull request against the original repository.",
+		"Once accepted there, we are happy to receive an update request."
+	],
+	"version": "https://github.com/atom/language-java/commit/f6d349a5ca698be25d3f48511888fe62d158e42c",
+	"name": "Java",
+	"scopeName": "javascool",
+	"patterns": [
+		{
+			"begin": "\\b(package)\\b\\s*",
+			"beginCaptures": {
+				"1": {
+					"name": "keyword.other.package.jvs"
+				}
+			},
+			"end": "\\s*(;)",
+			"endCaptures": {
+				"1": {
+					"name": "punctuation.terminator.jvs"
+				}
+			},
+			"name": "meta.package.jvs",
+			"contentName": "storage.modifier.package.jvs",
+			"patterns": [
+				{
+					"include": "#comments"
+				},
+				{
+					"match": "(?<=\\.)\\s*\\.|\\.(?=\\s*;)",
+					"name": "invalid.illegal.character_not_allowed_here.jvs"
+				},
+				{
+					"match": "(?<!_)_(?=\\s*(\\.|;))|\\b\\d+|-+",
+					"name": "invalid.illegal.character_not_allowed_here.jvs"
+				},
+				{
+					"match": "[A-Z]+",
+					"name": "invalid.deprecated.package_name_not_lowercase.jvs"
+				},
+				{
+					"match": "(?x)\\b(?<!\\$)\n(abstract|assert|boolean|break|byte|case|catch|char|class|\nconst|continue|default|do|double|else|enum|extends|final|\nfinally|float|for|goto|if|implements|import|instanceof|int|\ninterface|long|native|new|package|private|protected|public|\nreturn|short|static|strictfp|super|switch|syncronized|this|\nthrow|throws|transient|try|void|volatile|while|\ntrue|false|null)\\b",
+					"name": "invalid.illegal.character_not_allowed_here.jvs"
+				},
+				{
+					"match": "\\.",
+					"name": "punctuation.separator.jvs"
+				}
+			]
+		},
+		{
+			"begin": "\\b(import)\\b\\s*\\b(static)?\\b\\s",
+			"beginCaptures": {
+				"1": {
+					"name": "keyword.other.import.jvs"
+				},
+				"2": {
+					"name": "storage.modifier.jvs"
+				}
+			},
+			"end": "\\s*(;)",
+			"endCaptures": {
+				"1": {
+					"name": "punctuation.terminator.jvs"
+				}
+			},
+			"name": "meta.import.jvs",
+			"contentName": "storage.modifier.import.jvs",
+			"patterns": [
+				{
+					"include": "#comments"
+				},
+				{
+					"match": "(?<=\\.)\\s*\\.|\\.(?=\\s*;)",
+					"name": "invalid.illegal.character_not_allowed_here.jvs"
+				},
+				{
+					"match": "(?<!\\.)\\s*\\*",
+					"name": "invalid.illegal.character_not_allowed_here.jvs"
+				},
+				{
+					"match": "(?<!_)_(?=\\s*(\\.|;))|\\b\\d+|-+",
+					"name": "invalid.illegal.character_not_allowed_here.jvs"
+				},
+				{
+					"match": "(?x)\\b(?<!\\$)\n(abstract|assert|boolean|break|byte|case|catch|char|class|\nconst|continue|default|do|double|else|enum|extends|final|\nfinally|float|for|goto|if|implements|import|instanceof|int|\ninterface|long|native|new|package|private|protected|public|\nreturn|short|static|strictfp|super|switch|syncronized|this|\nthrow|throws|transient|try|void|volatile|while|\ntrue|false|null)\\b",
+					"name": "invalid.illegal.character_not_allowed_here.jvs"
+				},
+				{
+					"match": "\\.",
+					"name": "punctuation.separator.jvs"
+				},
+				{
+					"match": "\\*",
+					"name": "variable.language.wildcard.jvs"
+				}
+			]
+		},
+		{
+			"include": "#comments-javadoc"
+		},
+		{
+			"include": "#code"
+		},
+		{
+			"include": "#module"
+		}
+	],
+	"repository": {
+		"all-types": {
+			"patterns": [
+				{
+					"include": "#primitive-arrays"
+				},
+				{
+					"include": "#primitive-types"
+				},
+				{
+					"include": "#object-types"
+				}
+			]
+		},
+		"annotations": {
+			"patterns": [
+				{
+					"begin": "((@)[^\\s(]+)(\\()",
+					"beginCaptures": {
+						"1": {
+							"name": "storage.type.annotation.jvs"
+						},
+						"2": {
+							"name": "punctuation.definition.annotation.jvs"
+						},
+						"3": {
+							"name": "punctuation.definition.annotation-arguments.begin.bracket.round.jvs"
+						}
+					},
+					"end": "\\)",
+					"endCaptures": {
+						"0": {
+							"name": "punctuation.definition.annotation-arguments.end.bracket.round.jvs"
+						}
+					},
+					"name": "meta.declaration.annotation.jvs",
+					"patterns": [
+						{
+							"captures": {
+								"1": {
+									"name": "constant.other.key.jvs"
+								},
+								"2": {
+									"name": "keyword.operator.assignment.jvs"
+								}
+							},
+							"match": "(\\w*)\\s*(=)"
+						},
+						{
+							"include": "#code"
+						}
+					]
+				},
+				{
+					"match": "(@)(interface)\\s+(\\w*)|((@)\\w*)",
+					"name": "meta.declaration.annotation.jvs",
+					"captures": {
+						"1": {
+							"name": "punctuation.definition.annotation.jvs"
+						},
+						"2": {
+							"name": "storage.modifier.jvs"
+						},
+						"3": {
+							"name": "storage.type.annotation.jvs"
+						},
+						"4": {
+							"name": "storage.type.annotation.jvs"
+						},
+						"5": {
+							"name": "punctuation.definition.annotation.jvs"
+						}
+					}
+				}
+			]
+		},
+		"anonymous-block-and-instance-initializer": {
+			"begin": "{",
+			"beginCaptures": {
+				"0": {
+					"name": "punctuation.section.block.begin.bracket.curly.jvs"
+				}
+			},
+			"end": "}",
+			"endCaptures": {
+				"0": {
+					"name": "punctuation.section.block.end.bracket.curly.jvs"
+				}
+			},
+			"patterns": [
+				{
+					"include": "#code"
+				}
+			]
+		},
+		"anonymous-classes-and-new": {
+			"begin": "\\bnew\\b",
+			"beginCaptures": {
+				"0": {
+					"name": "keyword.control.new.jvs"
+				}
+			},
+			"end": "(?=;|\\)|,|:|}|\\+)",
+			"patterns": [
+				{
+					"include": "#comments"
+				},
+				{
+					"include": "#function-call"
+				},
+				{
+					"include": "#all-types"
+				},
+				{
+					"begin": "(?<!\\])\\s*({)",
+					"beginCaptures": {
+						"1": {
+							"name": "punctuation.section.inner-class.begin.bracket.curly.jvs"
+						}
+					},
+					"end": "}",
+					"endCaptures": {
+						"0": {
+							"name": "punctuation.section.inner-class.end.bracket.curly.jvs"
+						}
+					},
+					"name": "meta.inner-class.jvs",
+					"patterns": [
+						{
+							"include": "#class-body"
+						}
+					]
+				},
+				{
+					"include": "#parens"
+				}
+			]
+		},
+		"assertions": {
+			"patterns": [
+				{
+					"begin": "\\b(assert)\\s",
+					"beginCaptures": {
+						"1": {
+							"name": "keyword.control.assert.jvs"
+						}
+					},
+					"end": "$",
+					"name": "meta.declaration.assertion.jvs",
+					"patterns": [
+						{
+							"match": ":",
+							"name": "keyword.operator.assert.expression-separator.jvs"
+						},
+						{
+							"include": "#code"
+						}
+					]
+				}
+			]
+		},
+		"class": {
+			"begin": "(?=\\w?[\\w\\s]*\\b(?:class|(?<!@)interface|enum)\\s+\\w+)",
+			"end": "}",
+			"endCaptures": {
+				"0": {
+					"name": "punctuation.section.class.end.bracket.curly.jvs"
+				}
+			},
+			"name": "meta.class.jvs",
+			"patterns": [
+				{
+					"include": "#storage-modifiers"
+				},
+				{
+					"include": "#generics"
+				},
+				{
+					"include": "#comments"
+				},
+				{
+					"captures": {
+						"1": {
+							"name": "storage.modifier.jvs"
+						},
+						"2": {
+							"name": "entity.name.type.class.jvs"
+						}
+					},
+					"match": "(class|(?<!@)interface|enum)\\s+(\\w+)",
+					"name": "meta.class.identifier.jvs"
+				},
+				{
+					"begin": "extends",
+					"beginCaptures": {
+						"0": {
+							"name": "storage.modifier.extends.jvs"
+						}
+					},
+					"end": "(?={|implements)",
+					"name": "meta.definition.class.inherited.classes.jvs",
+					"patterns": [
+						{
+							"include": "#object-types-inherited"
+						},
+						{
+							"include": "#comments"
+						}
+					]
+				},
+				{
+					"begin": "(implements)\\s",
+					"beginCaptures": {
+						"1": {
+							"name": "storage.modifier.implements.jvs"
+						}
+					},
+					"end": "(?=\\s*extends|\\{)",
+					"name": "meta.definition.class.implemented.interfaces.jvs",
+					"patterns": [
+						{
+							"include": "#object-types-inherited"
+						},
+						{
+							"include": "#comments"
+						}
+					]
+				},
+				{
+					"begin": "{",
+					"beginCaptures": {
+						"0": {
+							"name": "punctuation.section.class.begin.bracket.curly.jvs"
+						}
+					},
+					"end": "(?=})",
+					"contentName": "meta.class.body.jvs",
+					"patterns": [
+						{
+							"include": "#class-body"
+						}
+					]
+				}
+			]
+		},
+		"class-body": {
+			"patterns": [
+				{
+					"include": "#comments-javadoc"
+				},
+				{
+					"include": "#comments"
+				},
+				{
+					"include": "#enums"
+				},
+				{
+					"include": "#class"
+				},
+				{
+					"include": "#generics"
+				},
+				{
+					"include": "#static-initializer"
+				},
+				{
+					"include": "#class-fields-and-methods"
+				},
+				{
+					"include": "#annotations"
+				},
+				{
+					"include": "#member-variables"
+				},
+				{
+					"include": "#storage-modifiers"
+				},
+				{
+					"include": "#code"
+				}
+			]
+		},
+		"class-fields-and-methods": {
+			"patterns": [
+				{
+					"begin": "(?=\\=)",
+					"end": "(?=;)",
+					"patterns": [
+						{
+							"include": "#code"
+						}
+					]
+				},
+				{
+					"include": "#methods"
+				}
+			]
+		},
+		"code": {
+			"patterns": [
+				{
+					"include": "#annotations"
+				},
+				{
+					"include": "#comments"
+				},
+				{
+					"include": "#enums"
+				},
+				{
+					"include": "#class"
+				},
+				{
+					"include": "#anonymous-block-and-instance-initializer"
+				},
+				{
+					"include": "#try-catch-finally"
+				},
+				{
+					"include": "#assertions"
+				},
+				{
+					"include": "#parens"
+				},
+				{
+					"include": "#constants-and-special-vars"
+				},
+				{
+					"include": "#numbers"
+				},
+				{
+					"include": "#anonymous-classes-and-new"
+				},
+				{
+					"include": "#lambda-expression"
+				},
+				{
+					"include": "#keywords"
+				},
+				{
+					"include": "#storage-modifiers"
+				},
+				{
+					"include": "#method-call"
+				},
+				{
+					"include": "#function-call"
+				},
+				{
+					"include": "#variables"
+				},
+				{
+					"include": "#variables-local"
+				},
+				{
+					"include": "#objects"
+				},
+				{
+					"include": "#properties"
+				},
+				{
+					"include": "#strings"
+				},
+				{
+					"include": "#all-types"
+				},
+				{
+					"match": ",",
+					"name": "punctuation.separator.delimiter.jvs"
+				},
+				{
+					"match": "\\.",
+					"name": "punctuation.separator.period.jvs"
+				},
+				{
+					"match": ";",
+					"name": "punctuation.terminator.jvs"
+				}
+			]
+		},
+		"comments": {
+			"patterns": [
+				{
+					"captures": {
+						"0": {
+							"name": "punctuation.definition.comment.jvs"
+						}
+					},
+					"match": "/\\*\\*/",
+					"name": "comment.block.empty.jvs"
+				},
+				{
+					"include": "#comments-inline"
+				}
+			]
+		},
+		"comments-inline": {
+			"patterns": [
+				{
+					"begin": "/\\*",
+					"captures": {
+						"0": {
+							"name": "punctuation.definition.comment.jvs"
+						}
+					},
+					"end": "\\*/",
+					"name": "comment.block.jvs"
+				},
+				{
+					"begin": "(^[ \\t]+)?(?=//)",
+					"beginCaptures": {
+						"1": {
+							"name": "punctuation.whitespace.comment.leading.jvs"
+						}
+					},
+					"end": "(?!\\G)",
+					"patterns": [
+						{
+							"begin": "//",
+							"beginCaptures": {
+								"0": {
+									"name": "punctuation.definition.comment.jvs"
+								}
+							},
+							"end": "\\n",
+							"name": "comment.line.double-slash.jvs"
+						}
+					]
+				}
+			]
+		},
+		"comments-javadoc": {
+			"patterns": [
+				{
+					"begin": "^\\s*(/\\*\\*)(?!/)",
+					"beginCaptures": {
+						"1": {
+							"name": "punctuation.definition.comment.jvs"
+						}
+					},
+					"end": "\\*/",
+					"endCaptures": {
+						"0": {
+							"name": "punctuation.definition.comment.jvs"
+						}
+					},
+					"name": "comment.block.jvsdoc.jvs",
+					"patterns": [
+						{
+							"match": "@(author|deprecated|return|see|serial|since|version)\\b",
+							"name": "keyword.other.documentation.jvsdoc.jvs"
+						},
+						{
+							"match": "(@param)\\s+(\\S+)",
+							"captures": {
+								"1": {
+									"name": "keyword.other.documentation.jvsdoc.jvs"
+								},
+								"2": {
+									"name": "variable.parameter.jvs"
+								}
+							}
+						},
+						{
+							"match": "(@(?:exception|throws))\\s+(\\S+)",
+							"captures": {
+								"1": {
+									"name": "keyword.other.documentation.jvsdoc.jvs"
+								},
+								"2": {
+									"name": "entity.name.type.class.jvs"
+								}
+							}
+						},
+						{
+							"match": "{(@link)\\s+(\\S+)?#([\\w$]+\\s*\\([^\\(\\)]*\\)).*}",
+							"captures": {
+								"1": {
+									"name": "keyword.other.documentation.jvsdoc.jvs"
+								},
+								"2": {
+									"name": "entity.name.type.class.jvs"
+								},
+								"3": {
+									"name": "variable.parameter.jvs"
+								}
+							}
+						}
+					]
+				}
+			]
+		},
+		"constants-and-special-vars": {
+			"patterns": [
+				{
+					"match": "\\b(true|false|null)\\b",
+					"name": "constant.language.jvs"
+				},
+				{
+					"match": "\\bthis\\b",
+					"name": "variable.language.this.jvs"
+				},
+				{
+					"match": "\\bsuper\\b",
+					"name": "variable.language.jvs"
+				}
+			]
+		},
+		"enums": {
+			"begin": "^\\s*([\\w\\s]*)(enum)\\s+(\\w+)",
+			"beginCaptures": {
+				"1": {
+					"patterns": [
+						{
+							"include": "#storage-modifiers"
+						}
+					]
+				},
+				"2": {
+					"name": "storage.modifier.jvs"
+				},
+				"3": {
+					"name": "entity.name.type.enum.jvs"
+				}
+			},
+			"end": "}",
+			"endCaptures": {
+				"0": {
+					"name": "punctuation.section.enum.end.bracket.curly.jvs"
+				}
+			},
+			"name": "meta.enum.jvs",
+			"patterns": [
+				{
+					"begin": "\\b(extends)\\b",
+					"beginCaptures": {
+						"1": {
+							"name": "storage.modifier.extends.jvs"
+						}
+					},
+					"end": "(?={|\\bimplements\\b)",
+					"name": "meta.definition.class.inherited.classes.jvs",
+					"patterns": [
+						{
+							"include": "#object-types-inherited"
+						},
+						{
+							"include": "#comments"
+						}
+					]
+				},
+				{
+					"begin": "\\b(implements)\\b",
+					"beginCaptures": {
+						"1": {
+							"name": "storage.modifier.implements.jvs"
+						}
+					},
+					"end": "(?={|\\bextends\\b)",
+					"name": "meta.definition.class.implemented.interfaces.jvs",
+					"patterns": [
+						{
+							"include": "#object-types-inherited"
+						},
+						{
+							"include": "#comments"
+						}
+					]
+				},
+				{
+					"begin": "{",
+					"beginCaptures": {
+						"0": {
+							"name": "punctuation.section.enum.begin.bracket.curly.jvs"
+						}
+					},
+					"end": "(?=})",
+					"patterns": [
+						{
+							"begin": "(?<={)",
+							"end": "(?=;|})",
+							"patterns": [
+								{
+									"include": "#comments-javadoc"
+								},
+								{
+									"include": "#comments"
+								},
+								{
+									"begin": "(\\w+)\\s*({)",
+									"beginCaptures": {
+										"1": {
+											"name": "constant.other.enum.jvs"
+										},
+										"2": {
+											"name": "punctuation.bracket.curly.jvs"
+										}
+									},
+									"end": "\\}",
+									"endCaptures": {
+										"0": {
+											"name": "punctuation.bracket.curly.jvs"
+										}
+									},
+									"patterns": [
+										{
+											"include": "#class-body"
+										}
+									]
+								},
+								{
+									"begin": "(\\w+)\\s*(\\()",
+									"beginCaptures": {
+										"1": {
+											"name": "constant.other.enum.jvs"
+										},
+										"2": {
+											"name": "punctuation.bracket.round.jvs"
+										}
+									},
+									"end": "\\)",
+									"endCaptures": {
+										"0": {
+											"name": "punctuation.bracket.round.jvs"
+										}
+									},
+									"patterns": [
+										{
+											"include": "#code"
+										}
+									]
+								},
+								{
+									"match": "\\b\\w+\\b",
+									"name": "constant.other.enum.jvs"
+								}
+							]
+						},
+						{
+							"include": "#class-body"
+						}
+					]
+				}
+			]
+		},
+		"function-call": {
+			"begin": "([A-Za-z_$][\\w$]*)\\s*(\\()",
+			"beginCaptures": {
+				"1": {
+					"name": "entity.name.function.jvs"
+				},
+				"2": {
+					"name": "punctuation.definition.parameters.begin.bracket.round.jvs"
+				}
+			},
+			"end": "\\)",
+			"endCaptures": {
+				"0": {
+					"name": "punctuation.definition.parameters.end.bracket.round.jvs"
+				}
+			},
+			"name": "meta.function-call.jvs",
+			"patterns": [
+				{
+					"include": "#code"
+				}
+			]
+		},
+		"generics": {
+			"begin": "<",
+			"beginCaptures": {
+				"0": {
+					"name": "punctuation.bracket.angle.jvs"
+				}
+			},
+			"end": ">",
+			"endCaptures": {
+				"0": {
+					"name": "punctuation.bracket.angle.jvs"
+				}
+			},
+			"patterns": [
+				{
+					"match": "\\b(extends|super)\\b",
+					"name": "storage.modifier.$1.jvs"
+				},
+				{
+					"match": "(?<!\\.)([a-zA-Z$_][a-zA-Z0-9$_]*)(?=\\s*<)",
+					"captures": {
+						"1": {
+							"name": "storage.type.jvs"
+						}
+					}
+				},
+				{
+					"include": "#primitive-arrays"
+				},
+				{
+					"match": "[a-zA-Z$_][a-zA-Z0-9$_]*",
+					"name": "storage.type.generic.jvs"
+				},
+				{
+					"match": "\\?",
+					"name": "storage.type.generic.wildcard.jvs"
+				},
+				{
+					"match": "&",
+					"name": "punctuation.separator.types.jvs"
+				},
+				{
+					"match": ",",
+					"name": "punctuation.separator.delimiter.jvs"
+				},
+				{
+					"match": "\\.",
+					"name": "punctuation.separator.period.jvs"
+				},
+				{
+					"include": "#parens"
+				},
+				{
+					"include": "#generics"
+				},
+				{
+					"include": "#comments"
+				}
+			]
+		},
+		"keywords": {
+			"patterns": [
+				{
+					"match": "\\bthrow\\b",
+					"name": "keyword.control.throw.jvs"
+				},
+				{
+					"match": "\\?|:",
+					"name": "keyword.control.ternary.jvs"
+				},
+				{
+					"match": "\\b(return|break|case|continue|default|do|while|for|switch|if|else)\\b",
+					"name": "keyword.control.jvs"
+				},
+				{
+					"match": "\\b(instanceof)\\b",
+					"name": "keyword.operator.instanceof.jvs"
+				},
+				{
+					"match": "(<<|>>>?|~|\\^)",
+					"name": "keyword.operator.bitwise.jvs"
+				},
+				{
+					"match": "((&|\\^|\\||<<|>>>?)=)",
+					"name": "keyword.operator.assignment.bitwise.jvs"
+				},
+				{
+					"match": "(===?|!=|<=|>=|<>|<|>)",
+					"name": "keyword.operator.comparison.jvs"
+				},
+				{
+					"match": "([+*/%-]=)",
+					"name": "keyword.operator.assignment.arithmetic.jvs"
+				},
+				{
+					"match": "(=)",
+					"name": "keyword.operator.assignment.jvs"
+				},
+				{
+					"match": "(\\-\\-|\\+\\+)",
+					"name": "keyword.operator.increment-decrement.jvs"
+				},
+				{
+					"match": "(\\-|\\+|\\*|\\/|%)",
+					"name": "keyword.operator.arithmetic.jvs"
+				},
+				{
+					"match": "(!|&&|\\|\\|)",
+					"name": "keyword.operator.logical.jvs"
+				},
+				{
+					"match": "(\\||&)",
+					"name": "keyword.operator.bitwise.jvs"
+				},
+				{
+					"match": "\\b(const|goto)\\b",
+					"name": "keyword.reserved.jvs"
+				}
+			]
+		},
+		"lambda-expression": {
+			"patterns": [
+				{
+					"match": "->",
+					"name": "storage.type.function.arrow.jvs"
+				}
+			]
+		},
+		"member-variables": {
+			"begin": "(?=private|protected|public|native|synchronized|abstract|threadsafe|transient|static|final)",
+			"end": "(?=\\=|;)",
+			"patterns": [
+				{
+					"include": "#storage-modifiers"
+				},
+				{
+					"include": "#variables"
+				},
+				{
+					"include": "#primitive-arrays"
+				},
+				{
+					"include": "#object-types"
+				}
+			]
+		},
+		"method-call": {
+			"begin": "(\\.)\\s*([A-Za-z_$][\\w$]*)\\s*(\\()",
+			"beginCaptures": {
+				"1": {
+					"name": "punctuation.separator.period.jvs"
+				},
+				"2": {
+					"name": "entity.name.function.jvs"
+				},
+				"3": {
+					"name": "punctuation.definition.parameters.begin.bracket.round.jvs"
+				}
+			},
+			"end": "\\)",
+			"endCaptures": {
+				"0": {
+					"name": "punctuation.definition.parameters.end.bracket.round.jvs"
+				}
+			},
+			"name": "meta.method-call.jvs",
+			"patterns": [
+				{
+					"include": "#code"
+				}
+			]
+		},
+		"methods": {
+			"begin": "(?!new)(?=[\\w<].*\\s+)(?=([^=/]|/(?!/))+\\()",
+			"end": "(})|(?=;)",
+			"endCaptures": {
+				"1": {
+					"name": "punctuation.section.method.end.bracket.curly.jvs"
+				}
+			},
+			"name": "meta.method.jvs",
+			"patterns": [
+				{
+					"include": "#storage-modifiers"
+				},
+				{
+					"begin": "(\\w+)\\s*(\\()",
+					"beginCaptures": {
+						"1": {
+							"name": "entity.name.function.jvs"
+						},
+						"2": {
+							"name": "punctuation.definition.parameters.begin.bracket.round.jvs"
+						}
+					},
+					"end": "\\)",
+					"endCaptures": {
+						"0": {
+							"name": "punctuation.definition.parameters.end.bracket.round.jvs"
+						}
+					},
+					"name": "meta.method.identifier.jvs",
+					"patterns": [
+						{
+							"include": "#parameters"
+						},
+						{
+							"include": "#parens"
+						},
+						{
+							"include": "#comments"
+						}
+					]
+				},
+				{
+					"include": "#generics"
+				},
+				{
+					"begin": "(?=\\w.*\\s+\\w+\\s*\\()",
+					"end": "(?=\\s+\\w+\\s*\\()",
+					"name": "meta.method.return-type.jvs",
+					"patterns": [
+						{
+							"include": "#all-types"
+						},
+						{
+							"include": "#parens"
+						},
+						{
+							"include": "#comments"
+						}
+					]
+				},
+				{
+					"include": "#throws"
+				},
+				{
+					"begin": "{",
+					"beginCaptures": {
+						"0": {
+							"name": "punctuation.section.method.begin.bracket.curly.jvs"
+						}
+					},
+					"end": "(?=})",
+					"contentName": "meta.method.body.jvs",
+					"patterns": [
+						{
+							"include": "#code"
+						}
+					]
+				},
+				{
+					"include": "#comments"
+				}
+			]
+		},
+		"module": {
+			"begin": "((open)\\s)?(module)\\s+(\\w+)",
+			"end": "}",
+			"beginCaptures": {
+				"1": {
+					"name": "storage.modifier.jvs"
+				},
+				"3": {
+					"name": "storage.modifier.jvs"
+				},
+				"4": {
+					"name": "entity.name.type.module.jvs"
+				}
+			},
+			"endCaptures": {
+				"0": {
+					"name": "punctuation.section.module.end.bracket.curly.jvs"
+				}
+			},
+			"name": "meta.module.jvs",
+			"patterns": [
+				{
+					"begin": "{",
+					"beginCaptures": {
+						"0": {
+							"name": "punctuation.section.module.begin.bracket.curly.jvs"
+						}
+					},
+					"end": "(?=})",
+					"contentName": "meta.module.body.jvs",
+					"patterns": [
+						{
+							"match": "\\b(requires|transitive|exports|opens|to|uses|provides|with)\\b",
+							"name": "keyword.module.jvs"
+						}
+					]
+				}
+			]
+		},
+		"numbers": {
+			"patterns": [
+				{
+					"match": "(?x)\n\\b(?<!\\$)\n0(x|X)\n(\n  (?<!\\.)[0-9a-fA-F]([0-9a-fA-F_]*[0-9a-fA-F])?[Ll]?(?!\\.)\n  |\n  (\n    [0-9a-fA-F]([0-9a-fA-F_]*[0-9a-fA-F])?\\.?\n    |\n    ([0-9a-fA-F]([0-9a-fA-F_]*[0-9a-fA-F])?)?\\.[0-9a-fA-F]([0-9a-fA-F_]*[0-9a-fA-F])?\n  )\n  [Pp][+-]?[0-9]([0-9_]*[0-9])?[FfDd]?\n)\n\\b(?!\\$)",
+					"name": "constant.numeric.hex.jvs"
+				},
+				{
+					"match": "\\b(?<!\\$)0(b|B)[01]([01_]*[01])?[Ll]?\\b(?!\\$)",
+					"name": "constant.numeric.binary.jvs"
+				},
+				{
+					"match": "\\b(?<!\\$)0[0-7]([0-7_]*[0-7])?[Ll]?\\b(?!\\$)",
+					"name": "constant.numeric.octal.jvs"
+				},
+				{
+					"match": "(?x)\n(?<!\\$)\n(\n  \\b[0-9]([0-9_]*[0-9])?\\.\\B(?!\\.)\n  |\n  \\b[0-9]([0-9_]*[0-9])?\\.([Ee][+-]?[0-9]([0-9_]*[0-9])?)[FfDd]?\\b\n  |\n  \\b[0-9]([0-9_]*[0-9])?\\.([Ee][+-]?[0-9]([0-9_]*[0-9])?)?[FfDd]\\b\n  |\n  \\b[0-9]([0-9_]*[0-9])?\\.([0-9]([0-9_]*[0-9])?)([Ee][+-]?[0-9]([0-9_]*[0-9])?)?[FfDd]?\\b\n  |\n  (?<!\\.)\\B\\.[0-9]([0-9_]*[0-9])?([Ee][+-]?[0-9]([0-9_]*[0-9])?)?[FfDd]?\\b\n  |\n  \\b[0-9]([0-9_]*[0-9])?([Ee][+-]?[0-9]([0-9_]*[0-9])?)[FfDd]?\\b\n  |\n  \\b[0-9]([0-9_]*[0-9])?([Ee][+-]?[0-9]([0-9_]*[0-9])?)?[FfDd]\\b\n  |\n  \\b(0|[1-9]([0-9_]*[0-9])?)(?!\\.)[Ll]?\\b\n)\n(?!\\$)",
+					"name": "constant.numeric.decimal.jvs"
+				}
+			]
+		},
+		"object-types": {
+			"patterns": [
+				{
+					"include": "#generics"
+				},
+				{
+					"begin": "\\b((?:[A-Za-z]\\w*\\s*\\.\\s*)*)([A-Z]\\w*)\\s*(?=\\[)",
+					"beginCaptures": {
+						"1": {
+							"patterns": [
+								{
+									"match": "[A-Za-z]\\w*",
+									"name": "storage.type.jvs"
+								},
+								{
+									"match": "\\.",
+									"name": "punctuation.separator.period.jvs"
+								}
+							]
+						},
+						"2": {
+							"name": "storage.type.object.array.jvs"
+						}
+					},
+					"end": "(?!\\s*\\[)",
+					"patterns": [
+						{
+							"include": "#comments"
+						},
+						{
+							"include": "#parens"
+						}
+					]
+				},
+				{
+					"match": "\\b((?:[A-Za-z]\\w*\\s*\\.\\s*)*[A-Z]\\w*)\\s*(?=<)",
+					"captures": {
+						"1": {
+							"patterns": [
+								{
+									"match": "[A-Za-z]\\w*",
+									"name": "storage.type.jvs"
+								},
+								{
+									"match": "\\.",
+									"name": "punctuation.separator.period.jvs"
+								}
+							]
+						}
+					}
+				},
+				{
+					"match": "\\b((?:[A-Za-z]\\w*\\s*\\.\\s*)*[A-Z]\\w*)\\b((?=\\s*[A-Za-z$_\\n])|(?=\\s*\\.\\.\\.))",
+					"captures": {
+						"1": {
+							"patterns": [
+								{
+									"match": "[A-Za-z]\\w*",
+									"name": "storage.type.jvs"
+								},
+								{
+									"match": "\\.",
+									"name": "punctuation.separator.period.jvs"
+								}
+							]
+						}
+					}
+				}
+			]
+		},
+		"object-types-inherited": {
+			"patterns": [
+				{
+					"include": "#generics"
+				},
+				{
+					"match": "\\b(?:[A-Z]\\w*\\s*(\\.)\\s*)*[A-Z]\\w*\\b",
+					"name": "entity.other.inherited-class.jvs",
+					"captures": {
+						"1": {
+							"name": "punctuation.separator.period.jvs"
+						}
+					}
+				},
+				{
+					"match": ",",
+					"name": "punctuation.separator.delimiter.jvs"
+				}
+			]
+		},
+		"objects": {
+			"match": "(?<![\\w$])[a-zA-Z_$][\\w$]*(?=\\s*\\.\\s*[\\w$]+)",
+			"name": "variable.other.object.jvs"
+		},
+		"parameters": {
+			"patterns": [
+				{
+					"match": "\\bfinal\\b",
+					"name": "storage.modifier.jvs"
+				},
+				{
+					"include": "#annotations"
+				},
+				{
+					"include": "#all-types"
+				},
+				{
+					"include": "#strings"
+				},
+				{
+					"match": "\\w+",
+					"name": "variable.parameter.jvs"
+				},
+				{
+					"match": ",",
+					"name": "punctuation.separator.delimiter.jvs"
+				},
+				{
+					"match": "\\.\\.\\.",
+					"name": "punctuation.definition.parameters.varargs.jvs"
+				}
+			]
+		},
+		"parens": {
+			"patterns": [
+				{
+					"begin": "\\(",
+					"beginCaptures": {
+						"0": {
+							"name": "punctuation.bracket.round.jvs"
+						}
+					},
+					"end": "\\)",
+					"endCaptures": {
+						"0": {
+							"name": "punctuation.bracket.round.jvs"
+						}
+					},
+					"patterns": [
+						{
+							"include": "#code"
+						}
+					]
+				},
+				{
+					"begin": "\\[",
+					"beginCaptures": {
+						"0": {
+							"name": "punctuation.bracket.square.jvs"
+						}
+					},
+					"end": "\\]",
+					"endCaptures": {
+						"0": {
+							"name": "punctuation.bracket.square.jvs"
+						}
+					},
+					"patterns": [
+						{
+							"include": "#code"
+						}
+					]
+				},
+				{
+					"begin": "{",
+					"beginCaptures": {
+						"0": {
+							"name": "punctuation.bracket.curly.jvs"
+						}
+					},
+					"end": "}",
+					"endCaptures": {
+						"0": {
+							"name": "punctuation.bracket.curly.jvs"
+						}
+					},
+					"patterns": [
+						{
+							"include": "#code"
+						}
+					]
+				}
+			]
+		},
+		"primitive-arrays": {
+			"patterns": [
+				{
+					"begin": "\\b(void|boolean|byte|char|short|int|float|long|double)\\b\\s*(?=\\[)",
+					"beginCaptures": {
+						"1": {
+							"name": "storage.type.primitive.array.jvs"
+						}
+					},
+					"end": "(?!\\s*\\[)",
+					"patterns": [
+						{
+							"include": "#comments"
+						},
+						{
+							"include": "#parens"
+						}
+					]
+				}
+			]
+		},
+		"primitive-types": {
+			"match": "\\b(void|boolean|byte|char|short|int|float|long|double)\\b",
+			"name": "storage.type.primitive.jvs"
+		},
+		"properties": {
+			"patterns": [
+				{
+					"match": "(\\.)\\s*([a-zA-Z_$][\\w$]*)(?=\\s*\\.\\s*[a-zA-Z_$][\\w$]*)",
+					"captures": {
+						"1": {
+							"name": "punctuation.separator.period.jvs"
+						},
+						"2": {
+							"name": "variable.other.object.property.jvs"
+						}
+					}
+				},
+				{
+					"match": "(\\.)\\s*([a-zA-Z_$][\\w$]*)",
+					"captures": {
+						"1": {
+							"name": "punctuation.separator.period.jvs"
+						},
+						"2": {
+							"name": "variable.other.property.jvs"
+						}
+					}
+				},
+				{
+					"match": "(\\.)\\s*([0-9][\\w$]*)",
+					"captures": {
+						"1": {
+							"name": "punctuation.separator.period.jvs"
+						},
+						"2": {
+							"name": "invalid.illegal.identifier.jvs"
+						}
+					}
+				}
+			]
+		},
+		"static-initializer": {
+			"patterns": [
+				{
+					"include": "#anonymous-block-and-instance-initializer"
+				},
+				{
+					"match": "static",
+					"name": "storage.modifier.jvs"
+				}
+			]
+		},
+		"storage-modifiers": {
+			"match": "\\b(public|private|protected|static|final|native|synchronized|abstract|threadsafe|transient|volatile|default|strictfp)\\b",
+			"name": "storage.modifier.jvs"
+		},
+		"strings": {
+			"patterns": [
+				{
+					"begin": "\"",
+					"beginCaptures": {
+						"0": {
+							"name": "punctuation.definition.string.begin.jvs"
+						}
+					},
+					"end": "\"",
+					"endCaptures": {
+						"0": {
+							"name": "punctuation.definition.string.end.jvs"
+						}
+					},
+					"name": "string.quoted.double.jvs",
+					"patterns": [
+						{
+							"match": "\\\\.",
+							"name": "constant.character.escape.jvs"
+						}
+					]
+				},
+				{
+					"begin": "'",
+					"beginCaptures": {
+						"0": {
+							"name": "punctuation.definition.string.begin.jvs"
+						}
+					},
+					"end": "'",
+					"endCaptures": {
+						"0": {
+							"name": "punctuation.definition.string.end.jvs"
+						}
+					},
+					"name": "string.quoted.single.jvs",
+					"patterns": [
+						{
+							"match": "\\\\.",
+							"name": "constant.character.escape.jvs"
+						}
+					]
+				}
+			]
+		},
+		"throws": {
+			"begin": "throws",
+			"beginCaptures": {
+				"0": {
+					"name": "storage.modifier.jvs"
+				}
+			},
+			"end": "(?={|;)",
+			"name": "meta.throwables.jvs",
+			"patterns": [
+				{
+					"match": ",",
+					"name": "punctuation.separator.delimiter.jvs"
+				},
+				{
+					"match": "[a-zA-Z$_][\\.a-zA-Z0-9$_]*",
+					"name": "storage.type.jvs"
+				}
+			]
+		},
+		"try-catch-finally": {
+			"patterns": [
+				{
+					"begin": "\\btry\\b",
+					"beginCaptures": {
+						"0": {
+							"name": "keyword.control.try.jvs"
+						}
+					},
+					"end": "}",
+					"endCaptures": {
+						"0": {
+							"name": "punctuation.section.try.end.bracket.curly.jvs"
+						}
+					},
+					"name": "meta.try.jvs",
+					"patterns": [
+						{
+							"begin": "\\(",
+							"beginCaptures": {
+								"0": {
+									"name": "punctuation.section.try.resources.begin.bracket.round.jvs"
+								}
+							},
+							"end": "\\)",
+							"endCaptures": {
+								"0": {
+									"name": "punctuation.section.try.resources.end.bracket.round.jvs"
+								}
+							},
+							"name": "meta.try.resources.jvs",
+							"patterns": [
+								{
+									"include": "#code"
+								}
+							]
+						},
+						{
+							"begin": "{",
+							"beginCaptures": {
+								"0": {
+									"name": "punctuation.section.try.begin.bracket.curly.jvs"
+								}
+							},
+							"end": "(?=})",
+							"contentName": "meta.try.body.jvs",
+							"patterns": [
+								{
+									"include": "#code"
+								}
+							]
+						}
+					]
+				},
+				{
+					"begin": "\\b(catch)\\b\\s*(?=\\(\\s*[^\\s]+\\s*[^)]+\\))",
+					"beginCaptures": {
+						"1": {
+							"name": "keyword.control.catch.jvs"
+						}
+					},
+					"end": "}",
+					"endCaptures": {
+						"0": {
+							"name": "punctuation.section.catch.end.bracket.curly.jvs"
+						}
+					},
+					"name": "meta.catch.jvs",
+					"patterns": [
+						{
+							"begin": "\\(",
+							"beginCaptures": {
+								"0": {
+									"name": "punctuation.definition.parameters.begin.bracket.round.jvs"
+								}
+							},
+							"end": "\\)",
+							"endCaptures": {
+								"0": {
+									"name": "punctuation.definition.parameters.end.bracket.round.jvs"
+								}
+							},
+							"contentName": "meta.catch.parameters.jvs",
+							"patterns": [
+								{
+									"include": "#comments"
+								},
+								{
+									"include": "#storage-modifiers"
+								},
+								{
+									"match": "\\|",
+									"name": "punctuation.catch.separator.jvs"
+								},
+								{
+									"match": "([a-zA-Z$_][\\.a-zA-Z0-9$_]*)\\s*(\\w+)?",
+									"captures": {
+										"1": {
+											"name": "storage.type.jvs"
+										},
+										"2": {
+											"name": "variable.parameter.jvs"
+										}
+									}
+								}
+							]
+						},
+						{
+							"begin": "{",
+							"beginCaptures": {
+								"0": {
+									"name": "punctuation.section.catch.begin.bracket.curly.jvs"
+								}
+							},
+							"end": "(?=})",
+							"contentName": "meta.catch.body.jvs",
+							"patterns": [
+								{
+									"include": "#code"
+								}
+							]
+						}
+					]
+				},
+				{
+					"begin": "\\bfinally\\b",
+					"beginCaptures": {
+						"0": {
+							"name": "keyword.control.finally.jvs"
+						}
+					},
+					"end": "}",
+					"endCaptures": {
+						"0": {
+							"name": "punctuation.section.finally.end.bracket.curly.jvs"
+						}
+					},
+					"name": "meta.finally.jvs",
+					"patterns": [
+						{
+							"begin": "{",
+							"beginCaptures": {
+								"0": {
+									"name": "punctuation.section.finally.begin.bracket.curly.jvs"
+								}
+							},
+							"end": "(?=})",
+							"contentName": "meta.finally.body.jvs",
+							"patterns": [
+								{
+									"include": "#code"
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		"variables": {
+			"begin": "(?x)\n(?=\n  (\n    \\b(void|boolean|byte|char|short|int|float|long|double)\\b\n    |\n    (?>(\\w+\\.)*[A-Z]+\\w*) # e.g. `javax.ws.rs.Response`, or `String`\n  )\n  (\n    <[\\w<>,\\.?\\s\\[\\]]*> # e.g. `HashMap<Integer, String>`, or `List<java.lang.String>`\n  )?\n  (\n    (\\[\\])* # int[][]\n  )?\n  \\s+\n  [A-Za-z_$][\\w$]* # At least one identifier after space\n  ([\\w\\[\\],$][\\w\\[\\],\\s]*)? # possibly primitive array or additional identifiers\n  \\s*(=|:|;)\n)",
+			"end": "(?=\\=|:|;)",
+			"name": "meta.definition.variable.jvs",
+			"patterns": [
+				{
+					"match": "([A-Za-z$_][\\w$]*)(?=\\s*(\\[\\])*\\s*(;|:|=|,))",
+					"captures": {
+						"1": {
+							"name": "variable.other.definition.jvs"
+						}
+					}
+				},
+				{
+					"include": "#all-types"
+				},
+				{
+					"include": "#code"
+				}
+			]
+		},
+		"variables-local": {
+			"begin": "(?=\\b(var)\\b\\s+[A-Za-z_$][\\w$]*\\s*(=|:|;))",
+			"end": "(?=\\=|:|;)",
+			"name": "meta.definition.variable.local.jvs",
+			"patterns": [
+				{
+					"match": "\\bvar\\b",
+					"name": "storage.type.local.jvs"
+				},
+				{
+					"match": "([A-Za-z$_][\\w$]*)(?=\\s*(\\[\\])*\\s*(=|:|;))",
+					"captures": {
+						"1": {
+							"name": "variable.other.definition.jvs"
+						}
+					}
+				},
+				{
+					"include": "#code"
+				}
+			]
+		}
+	}
+}
