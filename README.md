@@ -5,7 +5,7 @@ Format your javascool code with [javascool](https://marketplace.visualstudio.com
 
 
 ## Extension Settings
-The is no settings for this extension but in order to activate autoFormat you need to set :
+There are no settings for this extension but in order to activate autoFormat you need to set :
 ```json
 "editor.formatOnSave": true
 ```
