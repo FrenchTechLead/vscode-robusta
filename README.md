@@ -1,4 +1,4 @@
-# Javascool for Visual Studio Code
+# Javascool for Visual Studio Code [![CircleCI](https://circleci.com/gh/Meshredded/vscode-javascool-language-support/tree/master.svg?style=svg)](https://circleci.com/gh/Meshredded/vscode-javascool-language-support/tree/master)
 This extension provides full javascool language support for vscode (Code colorization, Formatting, Code execution, Theme ...)
 
 
