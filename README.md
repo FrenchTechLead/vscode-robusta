@@ -1,4 +1,4 @@
-# javascool for Visual Studio Code
+# Javascool for Visual Studio Code
 This extension provides full javascool language support for vscode (Code colorization, Formatting, Code execution, Theme ...)
 
 
