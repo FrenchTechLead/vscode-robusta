@@ -9,12 +9,17 @@ The extension provides the compile command on right click on .jvs files and run 
 ![](https://user-images.githubusercontent.com/10856604/67438849-e556b100-f5f4-11e9-9364-210ec8e58ccf.png)
 ![](https://user-images.githubusercontent.com/10856604/67439264-0ff53980-f5f6-11e9-9974-98e51bbefa65.png)
 
-## 2 - Code Colorization :
-The extension provides the javascool language configuration that makes code colorizing possible on vscode.
+## 2 - Problem Matcher :
+The extension provides a problem matcher to detect compilation errors and display them directly on the editor.
 
-![](https://user-images.githubusercontent.com/10856604/67438605-49c54080-f5f4-11e9-9523-72dd5d8a1c98.png)
+![](https://user-images.githubusercontent.com/10856604/67441703-2901e880-f5fe-11e9-912c-ab7046c0a759.png)
 
-## 3 - File Icon Theme :
+## 3 - Code Formatting / Colorization :
+The extension provides the javascool language configuration that makes code colorizing possible on vscode and a strong code formatter based on typescript formatter.
+
+![](https://user-images.githubusercontent.com/10856604/67442191-21434380-f600-11e9-82ea-ddd80a693807.gif)
+
+## 4 - File Icon Theme :
 The extension provides a set of file icons based on the famous Seti file icon theme.
 
 ![](https://user-images.githubusercontent.com/10856604/67438724-8bee8200-f5f4-11e9-94df-dff3d06a3877.png)
