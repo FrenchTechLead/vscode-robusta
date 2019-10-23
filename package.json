@@ -2,13 +2,27 @@
     "name": "javascool",
     "displayName": "javascool",
     "description": "Full javascool language support for vscode (Code colorization, formatting, code execution, theme ...).",
-    "author": "MECHERI Akram",
+    "author": {
+        "name": "MECHERI Akram"
+    },
     "publisher": "meshredded",
     "icon": "icons/128.png",
     "license": "MIT",
     "repository": {
-        "type": "github",
+        "type": "git",
         "url": "https://github.com/Meshredded/vscode-javascool-language-support.git"
+    },
+    "homepage": "https://github.com/Meshredded/vscode-javascool-language-support/blob/master/README.md",
+    "badges": [
+        {
+            "description": "circleci",
+            "href": "https://circleci.com/gh/Meshredded/vscode-javascool-language-support/tree/master",
+            "url": "https://circleci.com/gh/Meshredded/vscode-javascool-language-support/tree/master.svg?style=svg"
+        }
+    ],
+    "bugs": {
+        "url": "https://github.com/Meshredded/vscode-javascool-language-support/issues",
+        "email": "mecheri.akram@gmail.com"
     },
     "version": "2.0.0",
     "engines": {
