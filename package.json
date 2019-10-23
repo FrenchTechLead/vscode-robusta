@@ -1,7 +1,7 @@
 {
     "name": "javascool",
     "displayName": "javascool",
-    "description": "Full javascool langage support for vscode (Code colorization and formatting).",
+    "description": "Full javascool language support for vscode (Code colorization, formatting, code execution, theme ...).",
     "author": "MECHERI Akram",
     "publisher": "meshredded",
     "icon": "icons/128.png",
@@ -10,22 +10,23 @@
         "type": "github",
         "url": "https://github.com/Meshredded/vscode-javascool-language-support.git"
     },
-    "version": "1.0.0",
+    "version": "2.0.0",
     "engines": {
-        "vscode": "^1.31.0"
+        "vscode": "^1.33.0"
     },
     "categories": [
         "Programming Languages",
-        "Formatters"
+        "Formatters",
+        "Themes",
+        "Debuggers",
+        "Other"
     ],
     "activationEvents": [
+        "onCommand:javascool.compile",
         "onLanguage:jvs"
     ],
-    "main": "./out/formatter/extension",
+    "main": "./out/extension",
     "contributes": {
-        "configuration": {
-            "javascool.enable": "enable"
-        },
         "languages": [
             {
                 "id": "jvs",
@@ -45,20 +46,102 @@
                 "scopeName": "javascool",
                 "path": "./syntaxes/jvs.tmLanguage.json"
             }
+        ],
+        "commands": [
+            {
+                "command": "javascool.compile",
+                "title": "Javascool: Compile this file"
+            },
+            {
+                "command": "javascool.runJar",
+                "title": "Javascool: Run this jar file"
+            }
+        ],
+        "problemMatchers": [
+            {
+                "name": "jvscompile",
+                "owner": "jvscompile",
+                "fileLocation": [
+                    "absolute"
+                ],
+                "pattern": [
+                    {
+                        "regexp": "^jvs_error:(.*):(\\d+): (error|warning|info):((.|\n)*)",
+                        "kind": "location",
+                        "file": 1,
+                        "line": 2,
+                        "severity": 3,
+                        "message": 4,
+                        "location": 2,
+                        "loop": true
+                    }
+                ]
+            }
+        ],
+        "taskDefinitions": [
+            {
+                "type": "jvscompile"
+            }
+        ],
+        "menus": {
+            "explorer/context": [
+                {
+                    "when": "resourceLangId == jvs",
+                    "command": "javascool.compile",
+                    "group": "navigation"
+                },
+                {
+                    "when": "resourceExtname == .jar",
+                    "command": "javascool.runJar",
+                    "group": "navigation"
+                }
+            ],
+            "editor/context": [
+                {
+                    "when": "resourceLangId == jvs",
+                    "command": "javascool.compile",
+                    "group": "navigation"
+                },
+                {
+                    "when": "resourceExtname == .jar",
+                    "command": "javascool.runJar",
+                    "group": "navigation"
+                }
+            ]
+        },
+        "configuration": {
+            "type": "object",
+            "title": "Javascool-light",
+            "properties": {
+                "javascool-light.path": {
+                    "type": "string",
+                    "description": "Full path to the javascool-light.jar file."
+                }
+            }
+        },
+        "iconThemes": [
+            {
+                "id": "javascool-theme",
+                "label": "Javascool theme based on Seti theme",
+                "path": "./icons/vs-seti-icon-theme.json"
+            }
         ]
     },
     "devDependencies": {
-        "typescript": "^3.0.3",
-        "vscode": "^1.1.30",
-        "@types/node": "11.13.4"
+        "vscode": "^1.1.30"
     },
     "dependencies": {
+        "@types/node": "11.13.4",
+        "typescript": "^3.5.1",
         "vscode-languageclient": "~5.1.1",
         "tslint": "5.16.0",
         "path": "0.12.7",
         "typescript-formatter": "7.2.2"
     },
     "scripts": {
-        "postinstall": "node ./node_modules/vscode/bin/install && tsc"
+        "vscode:prepublish": "npm run compile",
+        "compile": "tsc -p ./",
+        "watch": "tsc -watch -p ./",
+        "lint": "tslint -p ./"
     }
 }

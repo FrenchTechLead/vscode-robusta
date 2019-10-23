@@ -1,13 +1,30 @@
 # javascool for Visual Studio Code
-Format your javascool code with [javascool](https://marketplace.visualstudio.com/items?itemName=meshredded.javascool).
+This extension provides full javascool language support for vscode (Code colorization, Formatting, Code execution, Theme ...)
 
-![](https://user-images.githubusercontent.com/10856604/56322907-970ab600-616a-11e9-8945-0b4eb57d8eae.gif)
+
+# FEATURES
+## 1 - Javascool code execution :
+The extension provides the compile command on right click on .jvs files and run command on clicking on .jar archives
+
+![](https://user-images.githubusercontent.com/10856604/67438849-e556b100-f5f4-11e9-9364-210ec8e58ccf.png)
+![](https://user-images.githubusercontent.com/10856604/67439264-0ff53980-f5f6-11e9-9974-98e51bbefa65.png)
+
+## 2 - Code colorization :
+The extension provides the javascool language configuration that makes code colorizing possible on vscode
+
+![](https://user-images.githubusercontent.com/10856604/67438605-49c54080-f5f4-11e9-9523-72dd5d8a1c98.png)
+
+## 3 - File Icon Theme :
+The extension provides a set of file icons based on the famous Seti file icon theme
+
+![](https://user-images.githubusercontent.com/10856604/67438724-8bee8200-f5f4-11e9-94df-dff3d06a3877.png)
+
 
 
 ## Extension Settings
-There are no settings for this extension but in order to activate autoFormat you need to set :
+Absolute path to javascool-light.jar archive (know more about javascool-light.jar [here](https://github.com/Meshredded/javascool-light) )
 ```json
-"editor.formatOnSave": true
+"javascool-light.path": "path/to/javascool-light.jar"
 ```
 See [here](https://stackoverflow.com/questions/39494277/how-do-you-format-code-on-save-in-vs-code) for more information.
 

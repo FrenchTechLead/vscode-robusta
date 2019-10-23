@@ -8,9 +8,9 @@ import {
     TextEdit
 } from 'vscode';
 
-import { format, tslintFix } from './formatting';
+import { format } from './formatting';
 
-export default class JavascoolProvider
+export default class JavascoolFormattingProvider
     implements DocumentFormattingEditProvider, DocumentRangeFormattingEditProvider {
     public provideDocumentFormattingEdits(
         document: TextDocument,
@@ -32,7 +32,6 @@ export default class JavascoolProvider
     private async _format(document: TextDocument, range?: Range): Promise<TextEdit[]> {
         const source = document.getText(range);
         let result = await format(source, document.uri);
-        (result = tslintFix(result, document.uri));
         range &&
             (result = result
                 .split('\n')
