@@ -77,6 +77,6 @@ function compileJvs(javascoolJarPath: string, fileFullPath: string, isBackground
      * if it contains spaces or other characters that need escaping.
      */
     function quotedOption(option: string): ShellQuotedString {
-        return { value: option, quoting: ShellQuoting.Escape };
+        return { value: option, quoting: ShellQuoting.Strong };
     }
 }
