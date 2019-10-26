@@ -1,6 +1,12 @@
 'use strict';
 
-import { workspace, window, commands, languages, tasks, Uri, Terminal, TextDocument, TaskExecution, TaskScope, ShellExecution, Task, TaskRevealKind } from 'vscode';
+import {
+    workspace, window, commands, languages, tasks,
+    Uri, Terminal, TextDocument, TaskExecution, TaskScope,
+    ShellExecution, Task, TaskRevealKind, ShellExecutionOptions,
+    ShellQuotedString,
+    ShellQuoting
+} from 'vscode';
 
 export async function compileFunction(uri: Uri) {
     closeAllTerminals();
@@ -14,9 +20,6 @@ export async function compileFunction(uri: Uri) {
         const javascoolJarPath = javascoolConfig.get("path");
         const fileFullPath = uri.fsPath;
         await compileJvs(javascoolJarPath as string, fileFullPath, false);
-        const cc = languages.getLanguages();
-        console.log(cc);
-
     }
 }
 
@@ -44,6 +47,12 @@ function closeAllTerminals(): void {
 }
 
 function compileJvs(javascoolJarPath: string, fileFullPath: string, isBackground: boolean): Thenable<TaskExecution> {
+
+    const args: (ShellQuotedString | string)[] = ['-jar'];
+    args.push(quotedOption(javascoolJarPath))
+    args.push('compile')
+    args.push(quotedOption(fileFullPath));
+
     const task = new Task(
         {
             type: "jvscompile"
@@ -51,13 +60,23 @@ function compileJvs(javascoolJarPath: string, fileFullPath: string, isBackground
         TaskScope.Workspace,
         "compile",
         "javascool",
-        new ShellExecution(`java -jar  "${javascoolJarPath}" compile "${fileFullPath}"`)
+        new ShellExecution("java", args)
     );
+
     task.presentationOptions.clear = true;
     task.presentationOptions.reveal = isBackground ? TaskRevealKind.Never : TaskRevealKind.Always;
     task.presentationOptions.echo = true;
     task.presentationOptions.showReuseMessage = false;
     task.problemMatchers = ["jvscompile"];
     task.isBackground = isBackground;
+
     return tasks.executeTask(task);
+
+    /**
+     * Returns a {@code ShellQuotedString} indicating how to quote the given flag
+     * if it contains spaces or other characters that need escaping.
+     */
+    function quotedOption(option: string): ShellQuotedString {
+        return { value: option, quoting: ShellQuoting.Escape };
+    }
 }
