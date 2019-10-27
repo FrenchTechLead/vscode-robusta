@@ -24,7 +24,7 @@
         "url": "https://github.com/Meshredded/vscode-javascool-language-support/issues",
         "email": "mecheri.akram@gmail.com"
     },
-    "version": "2.0.4",
+    "version": "2.0.5",
     "engines": {
         "vscode": "^1.33.0"
     },
@@ -36,7 +36,6 @@
         "Other"
     ],
     "activationEvents": [
-        "onCommand:javascool.compile",
         "onLanguage:jvs"
     ],
     "main": "./out/extension",
@@ -130,6 +129,16 @@
                 "javascool-light.path": {
                     "type": "string",
                     "description": "Full path to the javascool-light.jar file."
+                },
+                "javascool-light.formatOnSave": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Format the current document on save."
+                },
+                "javascool-light.compileOnSave": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Compile the current document on save."
                 }
             }
         },

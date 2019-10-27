@@ -1,23 +1,22 @@
 'use strict';
 
 import {
-    workspace, window, commands, languages, tasks,
+    workspace, window, commands, tasks,
     Uri, Terminal, TextDocument, TaskExecution, TaskScope,
-    ShellExecution, Task, TaskRevealKind, ShellExecutionOptions,
-    ShellQuotedString,
+    ShellExecution, Task, TaskRevealKind,
+    ShellQuotedString, TextEditor,
     ShellQuoting
 } from 'vscode';
 
 export async function compileFunction(uri: Uri) {
     closeAllTerminals();
-    const javascoolConfig = workspace.getConfiguration("javascool-light");
-    if (!javascoolConfig.has('path') || !javascoolConfig.get("path")) {
+    const javascoolJarPath: string = getConf("path");
+    if (!javascoolJarPath) {
         let response = await window.showErrorMessage("Can't find javascool-light.jar file, please specify the location of the file in user\'s settings.json", 'Open User Settings');
         if (response === 'Open User Settings') {
-            await commands.executeCommand('workbench.action.openGlobalSettings');
+            await commands.executeCommand('workbench.action.openGlobalSettings', 'javascool');
         }
     } else {
-        const javascoolJarPath = javascoolConfig.get("path");
         const fileFullPath = uri.fsPath;
         await compileJvs(javascoolJarPath as string, fileFullPath, false);
     }
@@ -32,26 +31,24 @@ export async function runJarFunction(uri: Uri) {
 }
 
 export async function onDocumentSave(document: TextDocument) {
-    closeAllTerminals();
-    await commands.executeCommand('editor.action.format');
-    const javascoolConfig = workspace.getConfiguration("javascool-light");
-    if (javascoolConfig.has('path') && javascoolConfig.get("path")) {
-        await compileJvs(javascoolConfig.get("path") as string, document.uri.fsPath, true);
+    const javascoolJarPath: string = getConf("path");
+    const shouldFormatOnSave: boolean = getConf("formatOnSave");
+    const shouldCompileOnSave: boolean = getConf("compileOnSave");
+    if (document.fileName.endsWith('jvs')) {
+        closeAllTerminals();
+        shouldFormatOnSave && await commands.executeCommand('editor.action.format');
+        if (javascoolJarPath && shouldCompileOnSave) {
+            await compileJvs(javascoolJarPath, document.uri.fsPath, true);
+        }
     }
-}
-
-
-
-function closeAllTerminals(): void {
-    (<any>window).terminals.forEach((t: Terminal) => t.dispose());
 }
 
 function compileJvs(javascoolJarPath: string, fileFullPath: string, isBackground: boolean): Thenable<TaskExecution> {
 
     const args: (ShellQuotedString | string)[] = ['-jar'];
-    args.push(quotedOption(javascoolJarPath))
+    args.push(quotedCommand(javascoolJarPath))
     args.push('compile')
-    args.push(quotedOption(fileFullPath));
+    args.push(quotedCommand(fileFullPath));
 
     const task = new Task(
         {
@@ -72,11 +69,17 @@ function compileJvs(javascoolJarPath: string, fileFullPath: string, isBackground
 
     return tasks.executeTask(task);
 
-    /**
-     * Returns a {@code ShellQuotedString} indicating how to quote the given flag
-     * if it contains spaces or other characters that need escaping.
-     */
-    function quotedOption(option: string): ShellQuotedString {
-        return { value: option, quoting: ShellQuoting.Strong };
-    }
+}
+
+function quotedCommand(command: string): ShellQuotedString {
+    return { value: command, quoting: ShellQuoting.Strong };
+}
+
+function getConf(key: string): any {
+    const javascoolConfig = workspace.getConfiguration("javascool-light");
+    return javascoolConfig.get(key);
+}
+
+function closeAllTerminals(): void {
+    (<any>window).terminals.forEach((t: Terminal) => t.dispose());
 }
