@@ -9,7 +9,7 @@
 	],
 	"fonts": [
 		{
-			"id": "seti-javascool",
+			"id": "seti-robusta",
 			"src": [
 				{
 					"path": "./seti.woff",
@@ -1241,14 +1241,14 @@
 			"fontCharacter": "\\E091",
 			"fontColor": "#6d8086"
 		},
-		"_javascool": {
+		"_robusta": {
 			"fontCharacter": "\\E092",
 			"fontColor": "#498ba7"
 		},
 	},
 	"file": "_default",
 	"fileExtensions": {
-		"jvs": "_javascool",
+		"jvs": "_robusta",
 		"bsl": "_bsl",
 		"mdo": "_mdo",
 		"asm": "_asm",
@@ -1494,7 +1494,7 @@
 		"java": "_java",
 		"javascriptreact": "_react",
 		"javascript": "_javascript",
-		"javascool": "_javascool",
+		"robusta": "_robusta",
 		"json": "_json",
 		"less": "_less",
 		"lua": "_lua",
@@ -1540,7 +1540,7 @@
 	"light": {
 		"file": "_default_light",
 		"fileExtensions": {
-			"jvs": "_javascool",
+			"jvs": "_robusta",
 			"bsl": "_bsl_light",
 			"mdo": "_mdo_light",
 			"asm": "_asm_light",
@@ -1722,7 +1722,7 @@
 			"ds_store": "_ignored_light"
 		},
 		"languageIds": {
-			"javascool": "_javascool",
+			"robusta": "_robusta",
 			"bat": "_windows_light",
 			"clojure": "_clojure_light",
 			"coffeescript": "_coffee_light",

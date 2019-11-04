@@ -1,9 +1,13 @@
-# Javascool for Visual Studio Code [![CircleCI](https://circleci.com/gh/Meshredded/vscode-javascool-language-support/tree/master.svg?style=svg)](https://circleci.com/gh/Meshredded/vscode-javascool-language-support/tree/master)
-This extension provides full javascool language support for vscode (Code colorization, Formatting, Code execution, Theme ...).
+[![Open Source Love](https://badges.frapsoft.com/os/v1/open-source.svg?v=103)](https://github.com/ellerbrock/open-source-badges/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
+[![Marketplace Version](https://vsmarketplacebadge.apphb.com/version/redhat.java.svg "Current Release")](https://marketplace.visualstudio.com/items?itemName=meshredded.robusta)
+[![CircleCI](https://circleci.com/gh/Meshredded/vscode-robusta/tree/master.svg?style=svg)](https://circleci.com/gh/Meshredded/vscode-robusta/tree/master)
+# Robusta for Visual Studio Code 
+This extension provides full robusta language support for vscode (Code colorization, Formatting, Code execution, Theme ...).
 
 
 # FEATURES
-## 1 - Javascool Code Execution :
+## 1 - Robusta Code Execution :
 The extension provides the compile command on right click on .jvs files and run command on clicking on .jar archives.
 
 ![](https://user-images.githubusercontent.com/10856604/67438849-e556b100-f5f4-11e9-9364-210ec8e58ccf.png)
@@ -15,7 +19,7 @@ The extension provides a problem matcher to detect compilation errors and displa
 ![](https://user-images.githubusercontent.com/10856604/67441703-2901e880-f5fe-11e9-912c-ab7046c0a759.png)
 
 ## 3 - Code Formatting / Colorization :
-The extension provides the javascool language configuration that makes code colorizing possible on vscode and a strong code formatter based on typescript formatter.
+The extension provides the robusta language configuration that makes code colorizing possible on vscode and a strong code formatter based on typescript formatter.
 
 ![](https://user-images.githubusercontent.com/10856604/67442191-21434380-f600-11e9-82ea-ddd80a693807.gif)
 
@@ -27,9 +31,9 @@ The extension provides a set of file icons based on the famous Seti file icon th
 
 
 ## Extension Settings
-Absolute path to javascool-light.jar archive (know more about javascool-light.jar [here.](https://github.com/Meshredded/javascool-light) )
+Absolute path to robusta.jar archive (know more about robusta.jar [here.](https://github.com/Meshredded/robusta) )
 ```json
-"javascool-light.path": "path/to/javascool-light.jar"
+"robusta.path": "path/to/robusta.jar"
 ```
 
 ## License

@@ -1,7 +1,7 @@
 {
-    "name": "javascool",
-    "displayName": "javascool",
-    "description": "Full javascool language support for vscode (Code colorization, formatting, code execution, theme ...).",
+    "name": "robusta",
+    "displayName": "robusta",
+    "description": "Full robusta language support for vscode (Code colorization, formatting, code execution, theme ...).",
     "author": {
         "name": "MECHERI Akram"
     },
@@ -10,21 +10,21 @@
     "license": "MIT",
     "repository": {
         "type": "git",
-        "url": "https://github.com/Meshredded/vscode-javascool-language-support.git"
+        "url": "https://github.com/Meshredded/vscode-robusta.git"
     },
-    "homepage": "https://github.com/Meshredded/vscode-javascool-language-support/blob/master/README.md",
+    "homepage": "https://github.com/Meshredded/vscode-robusta/blob/master/README.md",
     "badges": [
         {
             "description": "circleci",
-            "href": "https://circleci.com/gh/Meshredded/vscode-javascool-language-support/tree/master",
-            "url": "https://circleci.com/gh/Meshredded/vscode-javascool-language-support/tree/master.svg?style=svg"
+            "href": "https://circleci.com/gh/Meshredded/vscode-robusta/tree/master",
+            "url": "https://circleci.com/gh/Meshredded/vscode-robusta/tree/master.svg?style=svg"
         }
     ],
     "bugs": {
-        "url": "https://github.com/Meshredded/vscode-javascool-language-support/issues",
+        "url": "https://github.com/Meshredded/vscode-robusta/issues",
         "email": "mecheri.akram@gmail.com"
     },
-    "version": "2.0.5",
+    "version": "1.0.0",
     "engines": {
         "vscode": "^1.33.0"
     },
@@ -44,7 +44,7 @@
             {
                 "id": "jvs",
                 "aliases": [
-                    "javascool",
+                    "robusta",
                     "jvs"
                 ],
                 "extensions": [
@@ -56,18 +56,18 @@
         "grammars": [
             {
                 "language": "jvs",
-                "scopeName": "javascool",
+                "scopeName": "robusta",
                 "path": "./syntaxes/jvs.tmLanguage.json"
             }
         ],
         "commands": [
             {
-                "command": "javascool.compile",
-                "title": "Javascool: Compile this file"
+                "command": "robusta.compile",
+                "title": "robusta: Compile this file"
             },
             {
-                "command": "javascool.runJar",
-                "title": "Javascool: Run this jar file"
+                "command": "robusta.runJar",
+                "title": "robusta: Run this jar file"
             }
         ],
         "problemMatchers": [
@@ -100,42 +100,42 @@
             "explorer/context": [
                 {
                     "when": "resourceLangId == jvs",
-                    "command": "javascool.compile",
+                    "command": "robusta.compile",
                     "group": "navigation"
                 },
                 {
                     "when": "resourceExtname == .jar",
-                    "command": "javascool.runJar",
+                    "command": "robusta.runJar",
                     "group": "navigation"
                 }
             ],
             "editor/context": [
                 {
                     "when": "resourceLangId == jvs",
-                    "command": "javascool.compile",
+                    "command": "robusta.compile",
                     "group": "navigation"
                 },
                 {
                     "when": "resourceExtname == .jar",
-                    "command": "javascool.runJar",
+                    "command": "robusta.runJar",
                     "group": "navigation"
                 }
             ]
         },
         "configuration": {
             "type": "object",
-            "title": "Javascool-light",
+            "title": "Robusta",
             "properties": {
-                "javascool-light.path": {
+                "robusta.path": {
                     "type": "string",
-                    "description": "Full path to the javascool-light.jar file."
+                    "description": "Full path to the robusta.jar file."
                 },
-                "javascool-light.formatOnSave": {
+                "robusta.formatOnSave": {
                     "type": "boolean",
                     "default": true,
                     "description": "Format the current document on save."
                 },
-                "javascool-light.compileOnSave": {
+                "robusta.compileOnSave": {
                     "type": "boolean",
                     "default": true,
                     "description": "Compile the current document on save."
@@ -144,8 +144,8 @@
         },
         "iconThemes": [
             {
-                "id": "javascool-theme",
-                "label": "Javascool theme based on Seti theme",
+                "id": "robusta-theme",
+                "label": "Robusta Icon Theme",
                 "path": "./icons/vs-seti-icon-theme.json"
             }
         ]

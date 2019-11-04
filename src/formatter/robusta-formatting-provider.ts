@@ -10,7 +10,7 @@ import {
 
 import { format } from './formatting';
 
-export default class JavascoolFormattingProvider
+export default class RobustaFormattingProvider
     implements DocumentFormattingEditProvider, DocumentRangeFormattingEditProvider {
     public provideDocumentFormattingEdits(
         document: TextDocument,
