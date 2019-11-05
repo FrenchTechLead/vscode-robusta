@@ -1,9 +1,10 @@
 .circleci/**
 .vscode/**
-dist/extension.js.map
-out/**
+out/extension.js.map
 src/**
+node_modules
 .gitignore
 package-lock.json
 tsconfig.json
+webpack.config.js
 
