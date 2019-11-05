@@ -1,6 +1,6 @@
 .circleci/**
 .vscode/**
-node_modules
+dist/extension.js.map
 out/**
 src/**
 .gitignore

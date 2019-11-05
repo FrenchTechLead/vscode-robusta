@@ -34,7 +34,7 @@
         "url": "https://github.com/Meshredded/vscode-robusta/issues",
         "email": "mecheri.akram@gmail.com"
     },
-    "version": "1.0.3",
+    "version": "1.0.4",
     "engines": {
         "vscode": "^1.33.0"
     },
@@ -73,10 +73,10 @@
         ],
         "snippets": [
             {
-              "language": "jvs",
-              "path": "./snippets/robusta.json"
+                "language": "jvs",
+                "path": "./snippets/robusta.json"
             }
-          ],
+        ],
         "commands": [
             {
                 "command": "robusta.compile",
@@ -168,7 +168,10 @@
         ]
     },
     "devDependencies": {
-        "vscode": "^1.1.30"
+        "ts-loader": "^5.3.1",
+        "vscode": "^1.1.30",
+        "webpack": "^4.27.1",
+        "webpack-cli": "^3.1.2"
     },
     "dependencies": {
         "@types/node": "11.13.4",
@@ -179,8 +182,8 @@
         "typescript-formatter": "7.2.2"
     },
     "scripts": {
-        "vscode:prepublish": "npm run compile",
-        "compile": "tsc -p ./",
+        "vscode:prepublish": "webpack --mode production",
+        "compile": "tsc -p ./&webpack --mode development",
         "watch": "tsc -watch -p ./",
         "lint": "tslint -p ./"
     }
