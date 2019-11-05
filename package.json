@@ -24,7 +24,7 @@
         "url": "https://github.com/Meshredded/vscode-robusta/issues",
         "email": "mecheri.akram@gmail.com"
     },
-    "version": "1.0.0",
+    "version": "1.0.1",
     "engines": {
         "vscode": "^1.33.0"
     },
@@ -33,6 +33,7 @@
         "Formatters",
         "Themes",
         "Debuggers",
+        "Snippets",
         "Other"
     ],
     "activationEvents": [
@@ -60,6 +61,12 @@
                 "path": "./syntaxes/jvs.tmLanguage.json"
             }
         ],
+        "snippets": [
+            {
+              "language": "jvs",
+              "path": "./snippets/robusta.json"
+            }
+          ],
         "commands": [
             {
                 "command": "robusta.compile",
@@ -79,13 +86,13 @@
                 ],
                 "pattern": [
                     {
-                        "regexp": "^jvs_error:(.*):(\\d+): (error|warning|info):((.|\n)*)",
+                        "regexp": "^(.*):(\\d+),(\\d+): (error|warning|info):((.|\n)*)",
                         "kind": "location",
                         "file": 1,
                         "line": 2,
-                        "severity": 3,
-                        "message": 4,
-                        "location": 2,
+                        "column": 3,
+                        "severity": 4,
+                        "message": 5,
                         "loop": true
                     }
                 ]
@@ -137,7 +144,7 @@
                 },
                 "robusta.compileOnSave": {
                     "type": "boolean",
-                    "default": true,
+                    "default": false,
                     "description": "Compile the current document on save."
                 }
             }

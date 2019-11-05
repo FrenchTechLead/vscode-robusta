@@ -1,0 +1,180 @@
+{
+	"main": {
+		"prefix": "main",
+		"body": [
+			"void main() {",
+			"\t$0",
+			"}"
+		],
+		"description": "void main method"
+    },
+    "if": {
+		"prefix": "if",
+		"body": [
+			"if(${1:condition}) {",
+			"\t$2",
+			"}"
+		],
+		"description": "if statement"
+    },
+    "else": {
+		"prefix": "else",
+		"body": [
+			"else {",
+			"\t$2",
+			"}"
+		],
+		"description": "else statement"
+    },
+	"while": {
+		"prefix": "while",
+		"body": [
+			"while($1) {",
+			"\t",
+			"}"
+		],
+		"description": "while statement"
+	},
+	"Public constructor": {
+		"prefix": "ctor",
+		"body": [
+			"public ${1:${TM_FILENAME_BASE}}($2) {",
+			"\t${0:super();}",
+			"}"
+		],
+		"description": "Public constructor"
+	},
+	"trycatch": {
+		"prefix": "try_catch",
+		"body": [
+			"try {",
+			"\t$1",
+			"} catch (${2:Exception} ${3:e}) {",
+			"\t$4//${0:TODO}: handle exception",
+			"}"
+		],
+		"description": "try/catch block"
+	},
+	
+	"private_method": {
+		"prefix": "private_method",
+		"body": [
+			"private ${1:void} ${2:name}($3) {",
+			"\t$0",
+			"}"
+		],
+		"description": "private method"
+	},
+	"Public method": {
+		"prefix": "public_method",
+		"body": [
+			"public ${1:void} ${2:name}(${3}) {",
+			"\t$0",
+			"}"
+		],
+		"description": "public method"
+	},
+	"Private static method": {
+		"prefix": "private_static_method",
+		"body": [
+			"private static ${1:Type} ${2:name}(${3}) {",
+			"\t$0",
+			"}"
+		],
+		"description": "private static method"
+	},
+	"Public static method": {
+		"prefix": "public_static_method",
+		"body": [
+			"public static ${1:void} ${2:name}(${3}) {",
+			"\t$0",
+			"}"
+		],
+		"description": "public static method"
+	},
+	
+	"Switch Statement": {
+		"prefix": "switch",
+		"body": [
+			"switch (${1:key}) {",
+			"\tcase ${2:value}:",
+			"\t\t$0",
+			"\t\tbreak;",
+			"",
+			"\tdefault:",
+			"\t\tbreak;",
+			"}"
+		],
+		"description": "Switch Statement"
+	},
+	"newString": {
+		"prefix": "new",
+		"body": [
+			"${0:String} ${1:str} = new ${0:String}();"
+		],
+		"description": "Create new String"
+	},
+	"Private field": {
+		"prefix": "prf",
+		"body": [
+			"private ${1:String} ${2:name};"
+		],
+		"description": "Private field"
+	},
+	"print": {
+		"prefix": "print",
+		"body": [
+			"print(\"$1\");"
+		],
+		"description": "Print method"
+	},
+	"println": {
+		"prefix": "println",
+		"body": [
+			"println(\"$1\");"
+		],
+		"description": "Println method"
+	},
+	"readString": {
+		"prefix": "readString",
+		"body": [
+			"readString(\"$1\");"
+		],
+		"description": "readString method"
+	},
+	"readInteger": {
+		"prefix": "readInteger",
+		"body": [
+			"readInteger(\"$1\");"
+		],
+		"description": "readInteger method"
+	},
+	"readDouble": {
+		"prefix": "readDouble",
+		"body": [
+			"readDouble(\"$1\");"
+		],
+		"description": "readDouble method"
+	},
+	"readLong": {
+		"prefix": "readLong",
+		"body": [
+			"readLong(\"$1\");"
+		],
+		"description": "readLong method"
+	},
+	"readFloat": {
+		"prefix": "readFloat",
+		"body": [
+			"readFloat(\"$1\");"
+		],
+		"description": "readFloat method"
+	},
+	"readBoolean": {
+		"prefix": "readBoolean",
+		"body": [
+			"readBoolean(\"$1\");"
+		],
+		"description": "readBoolean method"
+	}
+}
