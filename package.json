@@ -18,13 +18,28 @@
             "description": "circleci",
             "href": "https://circleci.com/gh/Meshredded/vscode-robusta/tree/master",
             "url": "https://circleci.com/gh/Meshredded/vscode-robusta/tree/master.svg?style=svg"
+        },
+        {
+            "description": "frapsoft",
+            "href": "https://github.com/ellerbrock/open-source-badges/",
+            "url": "https://badges.frapsoft.com/os/v1/open-source.svg?v=103"
+        },
+        {
+            "description": "shields",
+            "href": "https://opensource.org/licenses/MIT",
+            "url": "https://img.shields.io/badge/License-MIT-green.svg"
+        },
+        {
+            "description": "shields",
+            "href": "https://opensource.org/licenses/MIT",
+            "url": "https://img.shields.io/badge/License-MIT-green.svg"
         }
     ],
     "bugs": {
         "url": "https://github.com/Meshredded/vscode-robusta/issues",
         "email": "mecheri.akram@gmail.com"
     },
-    "version": "1.0.1",
+    "version": "1.0.2",
     "engines": {
         "vscode": "^1.33.0"
     },
