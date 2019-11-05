@@ -1,7 +1,7 @@
 [![Open Source Love](https://badges.frapsoft.com/os/v1/open-source.svg?v=103)](https://github.com/ellerbrock/open-source-badges/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
 [![Marketplace Version](https://vsmarketplacebadge.apphb.com/version/meshredded.robusta.svg "Current Release")](https://marketplace.visualstudio.com/items?itemName=meshredded.robusta)
-[![Marketplace Version](http://vsmarketplacebadge.apphb.com/installs/meshredded.robusta.svg "Installs")](https://marketplace.visualstudio.com/items?itemName=meshredded.robusta)
+[![Marketplace Version](https://vsmarketplacebadge.apphb.com/installs/meshredded.robusta.svg "Installs")](https://marketplace.visualstudio.com/items?itemName=meshredded.robusta)
 [![CircleCI](https://circleci.com/gh/Meshredded/vscode-robusta/tree/master.svg?style=svg)](https://circleci.com/gh/Meshredded/vscode-robusta/tree/master)
 # Robusta for Visual Studio Code
 This extension provides full robusta language support for vscode (Code colorization, Formatting, Code execution, Theme ...).
