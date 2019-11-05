@@ -4,7 +4,7 @@
 [![Marketplace Version](https://vsmarketplacebadge.apphb.com/installs/meshredded.robusta.svg "Installs")](https://marketplace.visualstudio.com/items?itemName=meshredded.robusta)
 [![CircleCI](https://circleci.com/gh/Meshredded/vscode-robusta/tree/master.svg?style=svg)](https://circleci.com/gh/Meshredded/vscode-robusta/tree/master)
 # Robusta for Visual Studio Code
-This extension provides full robusta language support for vscode (Code colorization, Formatting, Code execution, Theme ...).
+This extension provides full robusta language support for vscode (Code colorization, Formatting, Code execution, Theme, Snippets ...).
 
 
 # FEATURES
@@ -32,10 +32,14 @@ The extension provides a set of file icons based on the famous Seti file icon th
 
 
 ## Extension Settings
-Absolute path to robusta.jar archive (know more about robusta.jar [here.](https://github.com/Meshredded/robusta) )
 ```json
-"robusta.path": "path/to/robusta.jar"
+{
+    "robusta.path": "path/to/robusta.jar",
+    "robusta.formatOnSave": true,
+    "robusta.compileOnSave": false
+}
 ```
+> Find out about robusta.jar [here.](https://github.com/Meshredded/robusta)
 
 ## License
 This software is released under the terms of the MIT license.
