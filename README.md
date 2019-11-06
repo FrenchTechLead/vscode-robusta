@@ -11,13 +11,13 @@ This extension provides full robusta language support for vscode (Code colorizat
 ## 1 - Robusta Code Execution :
 The extension provides the compile command on right click on .jvs files and run command on clicking on .jar archives.
 
-![](https://user-images.githubusercontent.com/10856604/67438849-e556b100-f5f4-11e9-9364-210ec8e58ccf.png)
-![](https://user-images.githubusercontent.com/10856604/67439264-0ff53980-f5f6-11e9-9974-98e51bbefa65.png)
+![](https://user-images.githubusercontent.com/10856604/68254605-3326dc80-002b-11ea-9e00-e4aa701e7773.png)
+![](https://user-images.githubusercontent.com/10856604/68254606-3326dc80-002b-11ea-8995-821b717c2999.png)
 
 ## 2 - Problem Matcher :
 The extension provides a problem matcher to detect compilation errors and display them directly on the editor.
 
-![](https://user-images.githubusercontent.com/10856604/67441703-2901e880-f5fe-11e9-912c-ab7046c0a759.png)
+![](https://user-images.githubusercontent.com/10856604/68254838-f0b1cf80-002b-11ea-8ea1-3cd6b316102d.png)
 
 ## 3 - Code Formatting / Colorization :
 The extension provides the robusta language configuration that makes code colorizing possible on vscode and a strong code formatter based on typescript formatter.
