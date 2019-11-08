@@ -14,7 +14,7 @@ export async function compileFunction(uri: Uri) {
     if (!robustaJarPath) {
         let response = await window.showErrorMessage("Can't find robusta.jar file, please specify the location of the file in user\'s settings.json", 'Open User Settings');
         if (response === 'Open User Settings') {
-            await commands.executeCommand('workbench.action.openGlobalSettings', 'robusta');
+            await commands.executeCommand('workbench.action.openGlobalSettings', `@ext:meshredded.robusta`);
         }
     } else {
         const fileFullPath = uri.fsPath;
