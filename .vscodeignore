@@ -1,5 +1,5 @@
-.circleci/**
-.vscode/**
+.circleci
+.vscode
 out/extension.js.map
 src/**
 node_modules
@@ -8,6 +8,4 @@ package-lock.json
 tsconfig.json
 webpack.config.js
 *.vsix
-
-!node_modules/typescript-formatter/lib/utils.js
 

@@ -11,8 +11,8 @@
     "if": {
 		"prefix": "if",
 		"body": [
-			"if(${1:condition}) {",
-			"\t$2",
+			"if($0) {",
+			"\t",
 			"}"
 		],
 		"description": "if statement"
@@ -35,10 +35,19 @@
 		],
 		"description": "while statement"
 	},
-	"Public constructor": {
-		"prefix": "ctor",
+	"for": {
+		"prefix": "for",
 		"body": [
-			"public ${1:${TM_FILENAME_BASE}}($2) {",
+			"for (int i = 0; i < 100; i++) {",
+			"\t$0",
+			"}"
+		],
+		"description": "for statement"
+	},
+	"Public constructor": {
+		"prefix": "constructor",
+		"body": [
+			"public Object($2) {",
 			"\t${0:super();}",
 			"}"
 		],
