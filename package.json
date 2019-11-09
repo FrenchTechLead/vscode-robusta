@@ -34,7 +34,7 @@
         "url": "https://github.com/Meshredded/vscode-robusta/issues",
         "email": "mecheri.akram@gmail.com"
     },
-    "version": "2.0.0",
+    "version": "2.0.1",
     "engines": {
         "vscode": "^1.33.0"
     },
