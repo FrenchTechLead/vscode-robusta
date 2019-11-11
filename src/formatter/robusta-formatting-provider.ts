@@ -149,7 +149,7 @@ export default class RobustaFormattingProvider
     private indent(x: number): string {
         let indents = '';
         for (let i = 0; i < x; i++)
-            indents = indents + '    ';
+            indents = indents + '\t';
         return indents;
     }
 

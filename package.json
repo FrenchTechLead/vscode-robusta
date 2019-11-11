@@ -34,7 +34,7 @@
         "url": "https://github.com/Meshredded/vscode-robusta/issues",
         "email": "mecheri.akram@gmail.com"
     },
-    "version": "2.0.0",
+    "version": "2.0.1",
     "engines": {
         "vscode": "^1.33.0"
     },
@@ -145,7 +145,7 @@
             "properties": {
                 "robusta.path": {
                     "type": "string",
-                    "description": "Full path to the robusta.jar file."
+                    "markdownDescription": "Full path to the [robusta.jar](https://github.com/Meshredded/robusta#2---download-robustajar-) file."
                 },
                 "robusta.formatOnSave": {
                     "type": "boolean",

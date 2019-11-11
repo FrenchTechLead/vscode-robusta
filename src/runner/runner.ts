@@ -1,15 +1,11 @@
-'use strict';
-
 import {
-    workspace, window, commands, tasks,
-    Uri, Terminal, TextDocument, TaskExecution, TaskScope,
+    workspace, window, commands, tasks, Uri,
+    Terminal, TextDocument, TaskExecution, TaskScope,
     ShellExecution, Task, TaskRevealKind,
-    ShellQuotedString, TextEditor,
-    ShellQuoting
+    ShellQuotedString, ShellQuoting, TaskPanelKind
 } from 'vscode';
 
 export async function compileFunction(uri: Uri) {
-    closeAllTerminals();
     const robustaJarPath: string = getConf("path");
     if (!robustaJarPath) {
         let response = await window.showErrorMessage("Can't find robusta.jar file, please specify the location of the file in user\'s settings.json", 'Open User Settings');
@@ -18,12 +14,11 @@ export async function compileFunction(uri: Uri) {
         }
     } else {
         const fileFullPath = uri.fsPath;
-        await compileJvs(robustaJarPath as string, fileFullPath, false);
+        !isCompileTaskCurrentlyExecuting() && await compileJvs(robustaJarPath as string, fileFullPath);
     }
 }
 
 export async function runJarFunction(uri: Uri) {
-    closeAllTerminals();
     const fileFullPath = uri.fsPath;
     const terminal: Terminal = (<any>window).createTerminal({ name: `robusta` });
     terminal.show();
@@ -35,15 +30,14 @@ export async function onDocumentSave(document: TextDocument) {
     const shouldFormatOnSave: boolean = getConf("formatOnSave");
     const shouldCompileOnSave: boolean = getConf("compileOnSave");
     if (document.fileName.endsWith('jvs')) {
-        closeAllTerminals();
         shouldFormatOnSave && await commands.executeCommand('editor.action.format');
         if (robustaJarPath && shouldCompileOnSave) {
-            await compileJvs(robustaJarPath, document.uri.fsPath, true);
+            !isCompileTaskCurrentlyExecuting() && await compileJvs(robustaJarPath, document.uri.fsPath);
         }
     }
 }
 
-function compileJvs(robustaJarPath: string, fileFullPath: string, isBackground: boolean): Thenable<TaskExecution> {
+function compileJvs(robustaJarPath: string, fileFullPath: string): Thenable<TaskExecution> {
 
     const args: (ShellQuotedString | string)[] = ['-jar'];
     args.push(quotedCommand(robustaJarPath))
@@ -61,14 +55,20 @@ function compileJvs(robustaJarPath: string, fileFullPath: string, isBackground: 
     );
 
     task.presentationOptions.clear = true;
-    task.presentationOptions.reveal = isBackground ? TaskRevealKind.Never : TaskRevealKind.Always;
+    task.presentationOptions.panel = TaskPanelKind.Shared;
+    task.presentationOptions.reveal = TaskRevealKind.Always;
     task.presentationOptions.echo = true;
     task.presentationOptions.showReuseMessage = false;
     task.problemMatchers = ["jvscompile"];
-    task.isBackground = isBackground;
+    task.isBackground = false;
 
     return tasks.executeTask(task);
 
+}
+
+// To prevent running compilation task in parallel
+function isCompileTaskCurrentlyExecuting(): boolean {
+    return tasks.taskExecutions.some(taskExec => taskExec.task.name === "compile");
 }
 
 function quotedCommand(command: string): ShellQuotedString {
@@ -78,8 +78,4 @@ function quotedCommand(command: string): ShellQuotedString {
 function getConf(key: string): any {
     const robustaConfig = workspace.getConfiguration("robusta");
     return robustaConfig.get(key);
-}
-
-function closeAllTerminals(): void {
-    (<any>window).terminals.forEach((t: Terminal) => t.dispose());
 }

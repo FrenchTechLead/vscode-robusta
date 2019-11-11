@@ -22,9 +22,14 @@ The extension provides a problem matcher to detect compilation errors and displa
 ## 3 - Code Formatting / Colorization :
 The extension provides the robusta language configuration that makes code colorizing possible on vscode and a strong code formatter based on typescript formatter.
 
-![](https://user-images.githubusercontent.com/10856604/67442191-21434380-f600-11e9-82ea-ddd80a693807.gif)
+![](https://user-images.githubusercontent.com/10856604/68626974-e2a4f880-04dc-11ea-84b3-b18ed8da975f.gif)
 
-## 4 - File Icon Theme :
+## 4 - Code Snippets :
+The extension provides some code snippets to auto-complete your code.
+
+![](https://user-images.githubusercontent.com/10856604/68626502-c8b6e600-04db-11ea-8905-d6009420cbe2.gif)
+
+## 5 - File Icon Theme :
 The extension provides a set of file icons based on the famous Seti file icon theme.
 
 ![](https://user-images.githubusercontent.com/10856604/67438724-8bee8200-f5f4-11e9-94df-dff3d06a3877.png)
