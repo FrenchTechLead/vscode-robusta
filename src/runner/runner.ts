@@ -22,7 +22,7 @@ export async function runJarFunction(uri: Uri) {
     const fileFullPath = uri.fsPath;
     const terminal: Terminal = (<any>window).createTerminal({ name: `robusta` });
     terminal.show();
-    terminal.sendText(`java -jar "${fileFullPath}"`, true);
+    terminal.sendText(`${getJava()} -jar "${fileFullPath}"`, true);
 }
 
 export async function onDocumentSave(document: TextDocument) {
@@ -51,7 +51,7 @@ function compileJvs(robustaJarPath: string, fileFullPath: string): Thenable<Task
         TaskScope.Workspace,
         "compile",
         "robusta",
-        new ShellExecution("java", args)
+        new ShellExecution(getJava(), args)
     );
 
     task.presentationOptions.clear = true;
@@ -78,4 +78,18 @@ function quotedCommand(command: string): ShellQuotedString {
 function getConf(key: string): any {
     const robustaConfig = workspace.getConfiguration("robusta");
     return robustaConfig.get(key);
+}
+
+function getJava(){
+    const isWindows = process.platform.indexOf('win') === 0;
+    const jdkHomePath = getConf('jdkHomePath');
+    let java = 'java';
+    if(jdkHomePath){
+        if(isWindows){
+            java = jdkHomePath + '\\bin\\java.exe';
+        } else {
+            java = jdkHomePath + '/bin/java';
+        }
+    }
+    return java;
 }

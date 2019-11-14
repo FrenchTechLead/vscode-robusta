@@ -34,7 +34,7 @@
         "url": "https://github.com/Meshredded/vscode-robusta/issues",
         "email": "mecheri.akram@gmail.com"
     },
-    "version": "2.0.2",
+    "version": "2.0.3",
     "engines": {
         "vscode": "^1.33.0"
     },
@@ -146,6 +146,10 @@
                 "robusta.path": {
                     "type": "string",
                     "markdownDescription": "Full path to the [robusta.jar](https://github.com/Meshredded/robusta#2---download-robustajar-) file."
+                },
+                "robusta.jdkHomePath": {
+                    "type": "string",
+                    "markdownDescription": "Full path to the jdk home folder file. (jdk 8 or greater)."
                 },
                 "robusta.formatOnSave": {
                     "type": "boolean",

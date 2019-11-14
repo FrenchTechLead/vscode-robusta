@@ -39,12 +39,17 @@ The extension provides a set of file icons based on the famous Seti file icon th
 ## Extension Settings
 ```json
 {
+    "robusta.jdkHomePath": "path/to/jdk/home",
     "robusta.path": "path/to/robusta.jar",
     "robusta.formatOnSave": true,
     "robusta.compileOnSave": false
 }
 ```
 > Find out about robusta.jar [here.](https://github.com/Meshredded/robusta)
+
+> Examples for `robusta.jdkHomePath` values :  
+mac : `/Library/Java/JavaVirtualMachines/jdk1.8.0_162.jdk/Contents/Home`  
+windows : `C:\\Program Files\\Java\\jdk1.8.0_162`
 
 ## License
 This software is released under the terms of the MIT license.
