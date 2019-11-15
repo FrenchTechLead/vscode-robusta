@@ -72,7 +72,7 @@ function isCompileTaskCurrentlyExecuting(): boolean {
 }
 
 function quotedCommand(command: string): ShellQuotedString {
-    return { value: command, quoting: ShellQuoting.Strong };
+    return { value: command, quoting: ShellQuoting.Escape };
 }
 
 function getConf(key: string): any {
