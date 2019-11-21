@@ -1,5 +1,6 @@
 const path = require('path');
 
+// devtool: 'source-map', option to debug
 /**@type {import('webpack').Configuration}*/
 const config = {
     target: 'node', 

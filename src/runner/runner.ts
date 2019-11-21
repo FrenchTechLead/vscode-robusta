@@ -82,10 +82,17 @@ function getConf(key: string): any {
 
 function getJava(){
     const isWindows = process.platform.indexOf('win') === 0;
-    const jdkHomePath = getConf('jdkHomePath');
+    const PROGRAMSX86 = "PROGRAM FILES (X86)";
+    const PROGRAMS = "PROGRAM FILES";
+    const PROGRAMS_1 = "PROGRA~1";
+    const PROGRAMS_2 = "PROGRA~2";
+    let jdkHomePath: string = getConf('jdkHomePath');
     let java = 'java';
     if(jdkHomePath){
         if(isWindows){
+            jdkHomePath = jdkHomePath.toUpperCase();
+            jdkHomePath = jdkHomePath.replace(PROGRAMSX86, PROGRAMS_2);
+            jdkHomePath = jdkHomePath.replace(PROGRAMS, PROGRAMS_1);
             java = jdkHomePath + '\\bin\\java.exe';
         } else {
             java = jdkHomePath + '/bin/java';
