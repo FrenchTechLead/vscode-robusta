@@ -4,7 +4,7 @@
 [![Marketplace Version](https://vsmarketplacebadge.apphb.com/installs/meshredded.robusta.svg "Installs")](https://marketplace.visualstudio.com/items?itemName=meshredded.robusta)
 [![CircleCI](https://circleci.com/gh/Meshredded/vscode-robusta/tree/master.svg?style=svg)](https://circleci.com/gh/Meshredded/vscode-robusta/tree/master)
 # Robusta for Visual Studio Code
-This extension provides full robusta language support for vscode (Code colorization, Formatting, Code execution, Theme, Snippets ...).
+This extension provides full Robusta language support for vscode (Code colorization, Formatting, Code execution, Theme, Snippets ...).
 
 
 # FEATURES
@@ -20,7 +20,7 @@ The extension provides a problem matcher to detect compilation errors and displa
 ![](https://user-images.githubusercontent.com/10856604/68254838-f0b1cf80-002b-11ea-8ea1-3cd6b316102d.png)
 
 ## 3 - Code Formatting / Colorization :
-The extension provides the robusta language configuration that makes code colorizing possible on vscode and a strong code formatter based on typescript formatter.
+The extension provides the Robusta language configuration that makes code colorizing possible on vscode and a strong code formatter based on typescript formatter.
 
 ![](https://user-images.githubusercontent.com/10856604/68626974-e2a4f880-04dc-11ea-84b3-b18ed8da975f.gif)
 

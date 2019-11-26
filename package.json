@@ -1,7 +1,7 @@
 {
     "name": "robusta",
-    "displayName": "robusta",
-    "description": "Full robusta language support for vscode (Code colorization, formatting, code execution, theme ...).",
+    "displayName": "Robusta",
+    "description": "Full Robusta language support for vscode (Code colorization, formatting, code execution, theme ...).",
     "author": {
         "name": "MECHERI Akram"
     },
@@ -34,7 +34,7 @@
         "url": "https://github.com/Meshredded/vscode-robusta/issues",
         "email": "mecheri.akram@gmail.com"
     },
-    "version": "2.0.6",
+    "version": "2.0.7",
     "engines": {
         "vscode": "^1.33.0"
     },
@@ -55,7 +55,8 @@
             {
                 "id": "jvs",
                 "aliases": [
-                    "robusta",
+                    "Robusta",
+                    "Javascool",
                     "jvs"
                 ],
                 "extensions": [
@@ -67,7 +68,7 @@
         "grammars": [
             {
                 "language": "jvs",
-                "scopeName": "robusta",
+                "scopeName": "Robusta",
                 "path": "./syntaxes/jvs.tmLanguage.json"
             }
         ],
@@ -80,11 +81,11 @@
         "commands": [
             {
                 "command": "robusta.compile",
-                "title": "robusta: Compile this file"
+                "title": "Robusta: Compile this file"
             },
             {
                 "command": "robusta.runJar",
-                "title": "robusta: Run this jar file"
+                "title": "Robusta: Run this jar file"
             }
         ],
         "problemMatchers": [
