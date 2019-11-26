@@ -49,7 +49,7 @@ The extension provides a set of file icons based on the famous Seti file icon th
 
 > Examples for `robusta.jdkHomePath` values :  
 mac : `/Library/Java/JavaVirtualMachines/jdk1.8.0_162.jdk/Contents/Home`  
-windows : `C:\\Program Files\\Java\\jdk1.8.0_162`
+windows : `C:\Program Files\Java\jdk1.8.0_162`
 
 ## License
 This software is released under the terms of the MIT license.
