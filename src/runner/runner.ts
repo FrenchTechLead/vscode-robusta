@@ -2,10 +2,11 @@ import {
     workspace, window, commands, tasks, Uri,
     Terminal, TextDocument, TaskExecution, TaskScope,
     ShellExecution, Task, TaskRevealKind,
-    ShellQuotedString, ShellQuoting, TaskPanelKind
+    ShellQuotedString, ShellQuoting, TaskPanelKind, ExtensionContext
 } from 'vscode';
+import { isWindows } from '../utils';
 
-export async function compileFunction(uri: Uri) {
+export async function compileFunction(uri: Uri, context: ExtensionContext) {
     const robustaJarPath: string = getConf("path");
     if (!robustaJarPath) {
         let response = await window.showErrorMessage("Can't find robusta.jar file, please specify the location of the file in user\'s settings.json", 'Open User Settings');
@@ -14,30 +15,34 @@ export async function compileFunction(uri: Uri) {
         }
     } else {
         const fileFullPath = uri.fsPath;
-        !isCompileTaskCurrentlyExecuting() && await compileJvs(robustaJarPath as string, fileFullPath);
+        !isCompileTaskCurrentlyExecuting() && await compileJvs(robustaJarPath as string, fileFullPath, context);
     }
 }
 
-export async function runJarFunction(uri: Uri) {
+export async function runJarFunction(uri: Uri, context: ExtensionContext) {
     const fileFullPath = uri.fsPath;
     const terminal: Terminal = (<any>window).createTerminal({ name: `robusta` });
     terminal.show();
-    terminal.sendText(`${getJava()} -jar "${fileFullPath}"`, true);
+    terminal.sendText(`${getJava(context)} -jar "${fileFullPath}"`, true);
 }
 
-export async function onDocumentSave(document: TextDocument) {
+export async function onDocumentSave(document: TextDocument, context: ExtensionContext) {
     const robustaJarPath: string = getConf("path");
     const shouldFormatOnSave: boolean = getConf("formatOnSave");
     const shouldCompileOnSave: boolean = getConf("compileOnSave");
     if (document.fileName.endsWith('jvs')) {
         shouldFormatOnSave && await commands.executeCommand('editor.action.format');
         if (robustaJarPath && shouldCompileOnSave) {
-            !isCompileTaskCurrentlyExecuting() && await compileJvs(robustaJarPath, document.uri.fsPath);
+            !isCompileTaskCurrentlyExecuting() && await compileJvs(robustaJarPath, document.uri.fsPath, context);
         }
     }
 }
 
-function compileJvs(robustaJarPath: string, fileFullPath: string): Thenable<TaskExecution> {
+function compileJvs(
+    robustaJarPath: string,
+    fileFullPath: string,
+    context: ExtensionContext
+    ): Thenable<TaskExecution> {
 
     const args: (ShellQuotedString | string)[] = ['-jar'];
     args.push(quotedCommand(robustaJarPath))
@@ -51,7 +56,7 @@ function compileJvs(robustaJarPath: string, fileFullPath: string): Thenable<Task
         TaskScope.Workspace,
         "compile",
         "robusta",
-        new ShellExecution(getJava(), args)
+        new ShellExecution(getJava(context), args)
     );
 
     task.presentationOptions.clear = true;
@@ -80,8 +85,7 @@ function getConf(key: string): any {
     return robustaConfig.get(key);
 }
 
-function getJava(){
-    const isWindows = process.platform.indexOf('win') === 0;
+function getJava(context: ExtensionContext){
     const PROGRAMSX86 = "PROGRAM FILES (X86)";
     const PROGRAMS = "PROGRAM FILES";
     const PROGRAMS_1 = "PROGRA~1";
@@ -96,6 +100,11 @@ function getJava(){
             java = jdkHomePath + '\\bin\\java.exe';
         } else {
             java = jdkHomePath + '/bin/java';
+        }
+    } else {
+        const jdkHomePath = context.globalState.get('jdkHome');
+        if(jdkHomePath){
+            java = jdkHomePath + '\\bin\\java.exe';
         }
     }
     return java;
