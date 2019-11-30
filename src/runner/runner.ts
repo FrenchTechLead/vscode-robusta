@@ -4,7 +4,6 @@ import {
     ShellExecution, Task, TaskRevealKind,
     ShellQuotedString, ShellQuoting, TaskPanelKind
 } from 'vscode';
-import fs = require("fs");
 
 export async function compileFunction(uri: Uri) {
     const robustaJarPath: string = getConf("path");
@@ -97,26 +96,6 @@ function getJava(){
             java = jdkHomePath + '\\bin\\java.exe';
         } else {
             java = jdkHomePath + '/bin/java';
-        }
-    } else {
-        console.log("Trying to find javac location ...");
-        const x1 = `C:\\${PROGRAMS_1}\\Java\\`;
-        const x2 = `C:\\${PROGRAMS_2}\\Java\\`;
-        let x3 : string = '';
-        fs.exists(x1, exists => {if(exists)x3 = x1;});
-        fs.exists(x2, exists => {if(exists)x3 = x2;});
-        if(x3){
-            fs.readdir(x3, (err, files) => {
-                if(err){
-                    return;
-                } else {
-                    files.forEach(file => {
-                        if(file.indexOf('jdk') > -1) {
-                            java = file + '\\bin\\java.exe';
-                        }
-                    });
-                } 
-            });
         }
     }
     return java;
