@@ -42,7 +42,7 @@ function compileJvs(
     robustaJarPath: string,
     fileFullPath: string,
     context: ExtensionContext
-    ): Thenable<TaskExecution> {
+): Thenable<TaskExecution> {
 
     const args: (ShellQuotedString | string)[] = ['-jar'];
     args.push(quotedCommand(robustaJarPath))
@@ -85,15 +85,15 @@ function getConf(key: string): any {
     return robustaConfig.get(key);
 }
 
-function getJava(context: ExtensionContext){
+function getJava(context: ExtensionContext) {
     const PROGRAMSX86 = "PROGRAM FILES (X86)";
     const PROGRAMS = "PROGRAM FILES";
     const PROGRAMS_1 = "PROGRA~1";
     const PROGRAMS_2 = "PROGRA~2";
     let jdkHomePath: string = getConf('jdkHomePath');
     let java = 'java';
-    if(jdkHomePath){
-        if(isWindows){
+    if (jdkHomePath) {
+        if (isWindows) {
             jdkHomePath = jdkHomePath.toUpperCase();
             jdkHomePath = jdkHomePath.replace(PROGRAMSX86, PROGRAMS_2);
             jdkHomePath = jdkHomePath.replace(PROGRAMS, PROGRAMS_1);
@@ -103,7 +103,7 @@ function getJava(context: ExtensionContext){
         }
     } else {
         const jdkHomePath = context.globalState.get('jdkHome');
-        if(jdkHomePath){
+        if (jdkHomePath) {
             java = jdkHomePath + '\\bin\\java.exe';
         }
     }
