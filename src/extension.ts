@@ -4,7 +4,7 @@ import { compileFunction, runJarFunction, onDocumentSave } from './runner/runner
 import { findJdkHome } from './utils';
 
 export function activate(context: ExtensionContext): void {
-    context.subscriptions.push(languages.registerDocumentFormattingEditProvider({ scheme: 'file', language: 'jvs' }, new RobustaFormattingProvider()));
+    context.subscriptions.push(languages.registerDocumentFormattingEditProvider({ scheme: 'file', language: 'jvs' }, new RobustaFormattingProvider(context)));
     context.subscriptions.push(commands.registerCommand('robusta.compile', (uri) => compileFunction(uri, context)));
     context.subscriptions.push(commands.registerCommand('robusta.runJar', (uri) => runJarFunction(uri, context)));
     workspace.onDidSaveTextDocument((x) => onDocumentSave(x, context));

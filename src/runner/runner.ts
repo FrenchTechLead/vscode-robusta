@@ -71,6 +71,36 @@ function compileJvs(
 
 }
 
+export function formatJvs(
+    fileFullPath: string,
+    context: ExtensionContext
+): Thenable<TaskExecution> {
+    const robustaJarPath: string = getConf("path");
+
+    const args: (ShellQuotedString | string)[] = ['-jar'];
+    args.push(quotedCommand(robustaJarPath))
+    args.push('format')
+    args.push(quotedCommand(fileFullPath));
+
+    const task = new Task(
+        {
+            type: "jvsFormat"
+        },
+        TaskScope.Workspace,
+        "format",
+        "robusta",
+        new ShellExecution(getJava(context), args)
+    );
+
+    task.presentationOptions.clear = false;
+    task.presentationOptions.panel = TaskPanelKind.Dedicated;
+    task.presentationOptions.reveal = TaskRevealKind.Never;
+    task.presentationOptions.echo = true;
+    task.presentationOptions.showReuseMessage = false;
+    task.isBackground = true;
+    return tasks.executeTask(task);
+}
+
 // To prevent running compilation task in parallel
 function isCompileTaskCurrentlyExecuting(): boolean {
     return tasks.taskExecutions.some(taskExec => taskExec.task.name === "compile");
