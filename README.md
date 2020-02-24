@@ -1,3 +1,5 @@
+<img src="https://sciences-tech.u-pec.fr/uas/g-sciences/LOGO/2017_11_27_Logotype-Faculte-ST_rvb.svg" alt="upec" width="200"/>
+
 [![Open Source Love](https://badges.frapsoft.com/os/v1/open-source.svg?v=103)](https://github.com/ellerbrock/open-source-badges/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
 [![Marketplace Version](https://vsmarketplacebadge.apphb.com/version/meshredded.robusta.svg "Current Release")](https://marketplace.visualstudio.com/items?itemName=meshredded.robusta)
@@ -20,7 +22,7 @@ The extension provides a problem matcher to detect compilation errors and displa
 ![](https://user-images.githubusercontent.com/10856604/68254838-f0b1cf80-002b-11ea-8ea1-3cd6b316102d.png)
 
 ## 3 - Code Formatting / Colorization :
-The extension provides the Robusta language configuration that makes code colorizing possible on vscode and a strong code formatter based on typescript formatter.
+The extension provides the Robusta language configuration that makes code colorizing possible on vscode and a strong code formatter.
 
 ![](https://user-images.githubusercontent.com/10856604/68626974-e2a4f880-04dc-11ea-84b3-b18ed8da975f.gif)
 

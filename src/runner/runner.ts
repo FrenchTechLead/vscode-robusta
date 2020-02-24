@@ -2,7 +2,7 @@ import {
     workspace, window, commands, tasks, Uri,
     Terminal, TextDocument, TaskExecution, TaskScope,
     ShellExecution, Task, TaskRevealKind,
-    ShellQuotedString, ShellQuoting, TaskPanelKind, ExtensionContext
+    ShellQuotedString, ShellQuoting, TaskPanelKind, ExtensionContext, WorkspaceConfiguration
 } from 'vscode';
 import { isWindows } from '../utils';
 
@@ -111,8 +111,12 @@ function quotedCommand(command: string): ShellQuotedString {
 }
 
 function getConf(key: string): any {
-    const robustaConfig = workspace.getConfiguration("robusta");
-    return robustaConfig.get(key);
+    const robustaConfig: WorkspaceConfiguration = workspace.getConfiguration("robusta");
+    let conf: any = robustaConfig.get(key);
+    if( typeof conf === 'string'){
+        conf = conf.trim();
+    }
+    return conf;
 }
 
 function getJava(context: ExtensionContext) {
