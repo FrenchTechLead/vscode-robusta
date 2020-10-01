@@ -175,14 +175,17 @@
     "devDependencies": {
         "@types/node": "",
         "@types/vscode": "^1.32.0",
-        "typescript": "^3.7.2",
         "ts-loader": "^6.2.1",
-        "webpack": "^4.41.2",
+        "typescript": "^3.7.2",
+        "webpack": "^4.44.2",
         "webpack-cli": "^3.3.10"
     },
     "scripts": {
         "vscode:prepublish": "webpack --mode production",
         "webpack": "webpack --mode development",
         "webpack-dev": "webpack --mode development --watch"
+    },
+    "dependencies": {
+        "@types/node": "^14.11.2"
     }
 }
