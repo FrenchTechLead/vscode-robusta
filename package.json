@@ -15,11 +15,6 @@
     "homepage": "https://github.com/Meshredded/vscode-robusta/blob/master/README.md",
     "badges": [
         {
-            "description": "circleci",
-            "href": "https://circleci.com/gh/Meshredded/vscode-robusta/tree/master",
-            "url": "https://circleci.com/gh/Meshredded/vscode-robusta/tree/master.svg?style=svg"
-        },
-        {
             "description": "frapsoft",
             "href": "https://github.com/ellerbrock/open-source-badges/",
             "url": "https://badges.frapsoft.com/os/v1/open-source.svg?v=103"
