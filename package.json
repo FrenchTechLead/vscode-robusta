@@ -34,7 +34,7 @@
         "url": "https://github.com/Meshredded/vscode-robusta/issues",
         "email": "mecheri.akram@gmail.com"
     },
-    "version": "3.0.4",
+    "version": "3.0.5",
     "engines": {
         "vscode": "^1.33.0"
     },
@@ -178,7 +178,7 @@
         "ts-loader": "^6.2.1",
         "typescript": "^3.7.2",
         "webpack": "^5.88.2",
-        "webpack-cli": "^3.3.10"
+        "webpack-cli": "^5.1.4"
     },
     "scripts": {
         "vscode:prepublish": "webpack --mode production",
