@@ -29,7 +29,7 @@
         "url": "https://github.com/Meshredded/vscode-robusta/issues",
         "email": "mecheri.akram@gmail.com"
     },
-    "version": "3.0.5",
+    "version": "3.0.6",
     "engines": {
         "vscode": "^1.33.0"
     },
